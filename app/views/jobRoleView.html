@@ -1,0 +1,20 @@
+{% extends "layout_unbranded.html" %} 
+
+{% block content %}
+
+<table class="govuk-table">
+    <caption class="govuk-table__caption govuk-table__caption--m">Job Roles</caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Role</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+    {% for role in roles %}
+      <tr class="govuk-table__row">
+        {text: role.role_name | safe}
+      </tr>
+    </tbody>
+  </table>
+
+  {% endblock %}
