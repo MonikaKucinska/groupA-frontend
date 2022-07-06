@@ -12,9 +12,11 @@ router.get('/job-roles', async (req, res) => {
             data[i].role_name = `<td id = 'name${data[i].role_id}' class="govuk-table__cell">${data[i].role_name}</td>`
         }
     } catch (e) {
-        console.error(e);
-    }  
+        res.locals.errormassege = e
+        res.render('jobRoleView')
+    }
     res.render('jobRoleView', {roles: data}) 
+    
 });
 
 module.exports = router
