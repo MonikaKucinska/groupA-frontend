@@ -3,7 +3,7 @@
 {% block content %}
 {% if errormassege %}
 <div id="error" class="govuk-error-message">{{errormassege}}</div> 
-{% endif %}
+{% else %}
 
 
 <table class="govuk-table">
@@ -21,6 +21,6 @@
     {% endfor %}
     </tbody>
   </table>
-
+{% endif %}
 
 {% endblock %}
