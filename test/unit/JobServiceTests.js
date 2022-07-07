@@ -29,7 +29,27 @@ describe('JobService', function () {
 
       var error = await JobService.getJobRoles()
       
-      expect(error.message).to.equal('Could not get job roles')
+      expect(error.message).to.equal('An error occurred while executing this request')
+    })
+
+    it('should return error message when error 404 occurs', async () => {
+      var mock = new MockAdapter(axios);
+
+      mock.onGet(JobService.URL).reply(404);
+
+      var error = await JobService.getJobRoles()
+      
+      expect(error.message).to.equal('Bad request')
+    })
+
+    it('should return error message when error 503 occurs', async () => {
+      var mock = new MockAdapter(axios);
+
+      mock.onGet(JobService.URL).reply(503);
+
+      var error = await JobService.getJobRoles()
+      
+      expect(error.message).to.equal('Server is unavaliable')
     })
 
     //more tests for error codes to add
