@@ -10,7 +10,7 @@
     "start": "node start",
     "build": "node lib/build/generate-assets",
     "serve": "node listen-on-port",
-    "test": "mocha"
+    "test": "mocha test/unit/*.js"
   },
   "dependencies": {
     "acorn": "^8.5.0",
