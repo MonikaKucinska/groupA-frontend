@@ -9,6 +9,6 @@ module.exports.getJobRoles = async function () {
         const response = await axios.get(URL)
         return response.data
     }catch(e){
-        throw new Error("Could not find job roles")
+        return new Error("Could not get job roles")
     }
 }

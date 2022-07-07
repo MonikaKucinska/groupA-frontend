@@ -20,5 +20,18 @@ describe('JobService', function () {
       var results = await JobService.getJobRoles();
       expect(results[0]).to.deep.equal(role);
     })
+
+    // test may be changed depending on how api deals with errors
+    it('should return error message when error 500 occurs', async () => {
+      var mock = new MockAdapter(axios);
+
+      mock.onGet(JobService.URL).reply(500);
+
+      var error = await JobService.getJobRoles()
+      
+      expect(error.message).to.equal('Could not get job roles')
+    })
+
+    //more tests for error codes to add
   })
 })

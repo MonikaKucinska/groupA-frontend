@@ -1,29 +1,32 @@
 {% extends "layout_unbranded.html" %} 
 
 {% block content %}
-
 <a href="#" class="govuk-back-link">Back</a>
+<br />
 
 {% if errormassege %}
 <div id="error" class="govuk-error-message">{{errormassege}}</div> 
 {% else %}
 
-
-<table class="govuk-table">
-    <caption class="govuk-table__caption govuk-table__caption--m">Job Roles</caption>
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header">Role</th>
-      </tr>
-    </thead>
-    <tbody class="govuk-table__body">
-    {% for role in roles %}
-      <tr class="govuk-table__row">
-        {{role.role_name | safe}}
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  {% if roles and roles.length > 0 %} 
+  <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Job Roles</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Role</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+      {% for role in roles %}
+        <tr class="govuk-table__row">
+          {{role.role_name | safe}}
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+  <p>There are no job roles. </p>
+  {% endif %}
 {% endif %}
 
 {% endblock %}
