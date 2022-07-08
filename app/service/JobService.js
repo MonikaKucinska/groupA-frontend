@@ -4,27 +4,26 @@ axios.defaults.baseURL = process.env.API_URL;
 
 URL = '/api/job-roles'
 
-module.exports.getJobRoles = async function () {
+module.exports.getJobRoles = async function (data) {
     try{
         const response = await axios.get(URL)
         return response.data
     }catch(e){
         // When new cases occurred add new statuses to catch
         if(e.response === undefined){
-            
             throw new Error("Undefined error has occurred")
         }
         else if(e.response.status === 500){
-            return new Error("An error occurred while executing this request")
+            throw new Error("An error occurred while executing this request")
         }
         else if(e.response.status === 404){
-            return new Error("Bad request")
+            throw new Error("Bad request")
         }
         else if(e.response.status === 503){
-            return new Error("Server is unavaliable")
+            throw new Error("Server is unavaliable")
         }
         else{
-            return new Error("Not specified error had occurred")
+            throw new Error("Not specified error had occurred")
         }
     }
 }

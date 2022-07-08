@@ -51,7 +51,5 @@ describe('JobService', function () {
       
       expect(error.message).to.equal('Server is unavaliable')
     })
-
-    //more tests for error codes to add
   })
 })
