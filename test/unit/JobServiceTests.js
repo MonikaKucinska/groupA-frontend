@@ -21,8 +21,7 @@ describe('JobService', function () {
       expect(results[0]).to.deep.equal(role);
     })
 
-    // test may be changed depending on how api deals with errors
-    it('should return error message when error 500 occurs', async () => {
+    it('should return error message when error 500 occurres', async () => {
       var mock = new MockAdapter(axios);
 
       mock.onGet(JobService.URL).reply(500);
@@ -34,7 +33,7 @@ describe('JobService', function () {
       }
     })
 
-    it('should return error message when error 404 occurs', async () => {
+    it('should return error message when error 404 occurres', async () => {
       var mock = new MockAdapter(axios);
 
       mock.onGet(JobService.URL).reply(404);
@@ -46,7 +45,7 @@ describe('JobService', function () {
       }
     })
 
-    it('should return error message when error 503 occurs', async () => {
+    it('should return error message when error 503 occurres', async () => {
       var mock = new MockAdapter(axios);
 
       mock.onGet(JobService.URL).reply(503);

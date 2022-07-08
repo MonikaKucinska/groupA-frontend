@@ -4,12 +4,11 @@ axios.defaults.baseURL = process.env.API_URL;
 
 URL = '/api/job-roles'
 
-module.exports.getJobRoles = async function (data) {
+module.exports.getJobRoles = async function () {
     try{
         const response = await axios.get(URL)
         return response.data
     }catch(e){
-        // When new cases occurred add new statuses to catch
         if(e.response === undefined){
             throw new Error("Undefined error has occurred")
         }
