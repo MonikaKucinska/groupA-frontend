@@ -55,5 +55,22 @@ describe('JobService', function () {
         expect(e.message).to.equal('Server is unavaliable')
       }
     })
-  })
+    it('should return error message when unknown error occurres', async () => {
+      var mock = new MockAdapter(axios);
+
+      mock.onGet(JobService.URL).reply(403);
+      try{
+        var error = await JobService.getJobRoles()
+      }catch(e){
+        expect(e.message).to.equal('Not handled error had occurred')
+      }
+    })
+    it('should return undefined, when the response is undefined (API not working)', async () => {
+      try{
+        var error = await JobService.getJobRoles()
+      }catch(e){
+        expect(error).to.equal(undefined)
+      }
+    })
+ })
 })
