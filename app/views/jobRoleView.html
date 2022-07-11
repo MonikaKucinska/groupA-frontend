@@ -19,7 +19,7 @@
       <tbody class="govuk-table__body">
       {% for role in roles %}
         <tr class="govuk-table__row">
-          {{role.role_name | safe}}
+          <td id="{{loop.index}}" class="govuk-table__cell">{{role.role_name}}</td>
         </tr>
       {% endfor %}
       </tbody>
