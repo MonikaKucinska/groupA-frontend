@@ -22,7 +22,7 @@ module.exports.getJobRoles = async function () {
             throw new Error("Server is unavaliable")
         }
         else{
-            throw new Error("Not specified error had occurred")
+            throw new Error("Not handled error had occurred")
         }
     }
 }
