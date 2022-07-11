@@ -67,9 +67,9 @@ describe('JobService', function () {
     })
     it('should return undefined, when the response is undefined (API not working)', async () => {
       try{
-        var error = await JobService.getJobRoles()
+        var res = await JobService.getJobRoles()
       }catch(e){
-        expect(error).to.equal(undefined)
+        expect(res).to.equal(undefined)
       }
     })
  })
