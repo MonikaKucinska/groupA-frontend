@@ -26,3 +26,26 @@ module.exports.getJobRoles = async function () {
         }
     }
 }
+
+module.exports.getCompByBandID = async function (id) {
+    try{
+        const response = await axios.get('/api/band-comp/' + id)
+        return response.data
+    }catch(e){
+        if(e.response === undefined){
+            throw new Error("Undefined error has occurred")
+        }
+        else if(e.response.status === 500){
+            throw new Error("An error occurred while executing this request")
+        }
+        else if(e.response.status === 404){
+            throw new Error("Bad request")
+        }
+        else if(e.response.status === 503){
+            throw new Error("Server is unavaliable")
+        }
+        else{
+            throw new Error("Not handled error had occurred")
+        }
+    }
+}
