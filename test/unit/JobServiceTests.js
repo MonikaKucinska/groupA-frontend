@@ -7,7 +7,9 @@ const role = {
   role_name: "Innovation Lead",
   role_description: "As an Innovation Lead (Consultant) in Kainos, youll be responsible will lead the team, working with the Innovation Lead in a dynamic and hands-on role which will involve managing and developing the team, implementing and shaping Kainos innovation strategy and effectively communicating the exciting work we undertake both internally and within the wider technology community.",
   sharepoint_url: "https://kainossoftwareltd.sharepoint.com/people/Job%20Specifications/Forms/AllItems.aspx?id=%2Fpeople%2FJob%20Specifications%2FEngineering%2FJob%20profile%20%2D%20Innovation%20Lead%20%28Consultant%29%2Epdf&parent=%2Fpeople%2FJob%20Specifications%2FEngineering&p=true&ga=1",
-  cap_id: 1
+  cap_id: 1,
+  band_id: 4,
+  band_name: 'Consultant'
 }
 
 describe('JobService', function () {
@@ -71,6 +73,14 @@ describe('JobService', function () {
       }catch(e){
         expect(res).to.equal(undefined)
       }
+    })
+    it('should return not null if band name is not null', async () => {
+      var mock = new MockAdapter(axios);
+
+      const data = [role];
+      mock.onGet(JobService.URL).reply(200, data);
+      var results = await JobService.getJobRoles();
+      expect(results[0].band_name).to.not.equal(null);
     })
  })
 })
