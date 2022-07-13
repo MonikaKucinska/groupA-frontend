@@ -13,6 +13,7 @@ const role = {
 }
 
 const competency = {
+  band_name: "Leaders",
   comp_name: "Supporting and Delivering the Strategy",
   comp_description: "Sets, maintains, and ensures a clear direction for Kainos with highly focused priorities and results by articulating short, medium-and long-term strategies focused on adding real value to Kainos and our customers Creates joined up strategies and plans which help put into practice and support Kainos vision and long-term direction which are challenging yet achievable. Based upon external economic, social, technology and environmental trends. Enables the whole company to remain focused on business priorities, irrespective of challenges. Swiftly refocuses Kainos on new priorities as changing situations dictate. Models personal resilience and accountability for achieving strategic priorities and results. Balances challenging operational and strategic priorities. Establishes transparency and trust where results are discussed openly. Encourages and inspires the organisation to energise delivery, while driving a performance culture across Kainos and achieve results through others. Monitors and evaluates strategic outcomes, adjusting to ensure sustainability of the strategy and ongoing communication and engagement."
 }
@@ -101,22 +102,19 @@ describe('JobService', function () {
     expect(results[0]).to.deep.equal(competency)
   })
 
-  it('should return empty array when send id is lower than 1', async () => {
-    var mock = new MockAdapter(axios);
+  it('should return error message when id is not a number', async () => {
+    var id = 'string'
 
-    var id = 0
-
-    const data = [];
-    mock.onGet('/api/band-comp/' + id).reply(200, data)
-    var results = await JobService.getCompByBandID(id)
-    expect(results).to.deep.equal([])
+    try{
+      var error = await JobService.getCompByBandID(id)
+    }catch(e){
+      expect(e.message).to.equal("Invalid ID")
+    }
   })
 
   it('should return error message when error 500 occurres', async () => {
     var mock = new MockAdapter(axios)
-
     var id = 1
-
     mock.onGet('/api/band-comp/' + id).reply(500)
 
     try{
@@ -179,15 +177,7 @@ describe('JobService', function () {
     }
   })
 
-  it('should return error message when id is not a number', async () => {
-    var id = 'string'
-
-    try{
-      var error = await JobService.getCompByBandID(id)
-    }catch(e){
-      expect(e.message).to.equal("Invalid ID")
-    }
-  })
+ 
 
   it('should return undefined, when the response is undefined (API not working)', async () => {
     var id = 1
@@ -197,16 +187,6 @@ describe('JobService', function () {
     }catch(e){
       expect(res).to.equal(undefined)
     }
-  })
-
-
-  it('should return not null if competency name is not null', async () => {
-    var mock = new MockAdapter(axios);
-
-    const data = [competency];
-    mock.onGet(JobService.URL).reply(200, data);
-    var results = await JobService.getJobRoles();
-    expect(results[0].comp_name).to.not.equal(null);
   })
 })
 })

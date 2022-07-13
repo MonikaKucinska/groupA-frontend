@@ -21,10 +21,10 @@ router.get('/job-roles', async (req, res) => {
 //await for data from api with sended band id, 
 //render bandCompView with data and band name if not error
 //if error occurres, render error message
-router.get('/band-comp/:bandName/:id', async (req, res) => {
+router.get('/band-comp/:id', async (req, res) => {
     try {
         data = await JobService.getCompByBandID(req.params.id) 
-        res.render('bandCompView', {competencies: data, bandName: req.params.bandName})
+        res.render('bandCompView', {competencies: data})
     } catch (e) {
         res.locals.errormassege = e
         res.render('bandCompView')
