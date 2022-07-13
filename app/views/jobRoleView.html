@@ -15,9 +15,11 @@
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Role</th>
 
+
           <th scope="col" class="govuk-table__header">Role Description</th>
           <th scope="col" class="govuk-table__header">Capability</th>
           <th scope="col" class="govuk-table__header">Sharepoint Link</th>
+          <th scope="col" class="govuk-table__header">Band</th>
 
         </tr>
       </thead>
@@ -26,8 +28,9 @@
         <tr class="govuk-table__row">
           <td id="{{loop.index}}" class="govuk-table__cell">{{role.role_name}}</td>
           <td class="govuk-table__cell">{{role.role_description}}</td>
-          <td class="govuk-table__cell">{{role.cap_name}}</td>
-          <td class="govuk-table__cell"><a href={{role.sharepoint_url}}>view {{role.role_name}} specification</a></td>
+         <td class="govuk-table__cell">{{role.cap_name}}</td>
+         <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank">view {{role.role_name}} specification</a></td>
+          <td class="govuk-table__cell band{{role.band_id}}">{{role.band_name}}</td>
         </tr>
       {% endfor %}
       </tbody>
