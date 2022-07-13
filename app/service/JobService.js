@@ -3,6 +3,7 @@ const { response } = require('express');
 axios.defaults.baseURL = process.env.API_URL;
 
 URL = '/api/job-roles'
+BAND_URL = '/api/band-comp/'
 
 module.exports.getJobRoles = async function () {
     try{
@@ -29,10 +30,16 @@ module.exports.getJobRoles = async function () {
 
 module.exports.getCompByBandID = async function (id) {
     try{
-        const response = await axios.get('/api/band-comp/' + id)
+        if(isNaN(id)){
+            throw new Error("Invalid ID")
+        }
+        const response = await axios.get(BAND_URL + id)
         return response.data
     }catch(e){
-        if(e.response === undefined){
+        if(e.message === "Invalid ID"){
+            throw new Error("Invalid ID")
+        }
+        else if(e.response === undefined){
             throw new Error("Undefined error has occurred")
         }
         else if(e.response.status === 500){

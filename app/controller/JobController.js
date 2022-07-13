@@ -15,18 +15,16 @@ router.get('/job-roles', async (req, res) => {
         res.locals.errormassege = e
         res.render('jobRoleView')
     }
-    
 });
 
-router.get('/band-comp/:id', async (req, res) => {
+router.get('/band-comp/:bandName/:id', async (req, res) => {
     try {
         data = await JobService.getCompByBandID(req.params.id) 
-        res.render('bandCompView', {competencies: data})
+        res.render('bandCompView', {competencies: data, bandName: req.params.bandName})
     } catch (e) {
         res.locals.errormassege = e
         res.render('bandCompView')
     }
-    
 });
 
 module.exports = router
