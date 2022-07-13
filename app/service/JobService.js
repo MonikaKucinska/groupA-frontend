@@ -45,7 +45,7 @@ module.exports.getCompByBandID = async function (id) {
         else if(e.response.status === 500){
             throw new Error("An error occurred while executing this request")
         }
-        else if(e.response.status === 404){
+        else if(e.response.status === 404 || e.response.status === 400){
             throw new Error("Bad request")
         }
         else if(e.response.status === 503){

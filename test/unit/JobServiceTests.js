@@ -126,6 +126,20 @@ describe('JobService', function () {
     }
   })
 
+  it('should return error message when error 400 occurres', async () => {
+    var mock = new MockAdapter(axios);
+
+    var id = 1;
+
+    mock.onGet('/api/band-comp/' + id).reply(400);
+
+    try{
+      var error = await JobService.getCompByBandID(id)
+    }catch(e){
+      expect(e.message).to.equal('Bad request')
+    }
+  })
+
   it('should return error message when error 404 occurres', async () => {
     var mock = new MockAdapter(axios);
 
