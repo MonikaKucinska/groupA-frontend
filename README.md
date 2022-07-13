@@ -17,6 +17,12 @@ To see if application is running view ```http://localhost:3000/index```
 ```http://localhost:3000/index``` -> ```http://localhost:3000/job-roles```  
  a button "View job roles" leads from home page to view job roles page  
 
+ ```http://localhost:3000/job-roles``` -> ```http://localhost:3000/band-comp/:band-name/:id```  
+ A hyper link on every row that leads to band-comp site with competency name and description  
+
+ ```http://localhost:3000/band-comp/:band-name/:id``` -> ```http://localhost:3000/job-roles```  
+a button "back" leads back to view job roles
+
 ```http://localhost:3000/job-roles``` -> ```http://localhost:3000/index```  
  a button "back" leads back to home page
 
