@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const JobService = require('../service/JobService.js')
+const userValidator = require('../validator/UserValidator.js');
 
 //take request body and response body
 //await for data from api, 
@@ -12,7 +13,7 @@ router.get('/job-roles', async (req, res) => {
         data = await JobService.getJobRoles() 
         res.render('jobRoleView', {roles: data})
     } catch (e) {
-        res.locals.errormassege = e
+        res.locals.errormessage = e
         res.render('jobRoleView')
     }
 });
@@ -26,17 +27,18 @@ router.get('/band-comp/:id', async (req, res) => {
         data = await JobService.getCompByBandID(req.params.id) 
         res.render('bandCompView', {competencies: data})
     } catch (e) {
-        res.locals.errormassege = e
+        res.locals.errormessage = e
         res.render('bandCompView')
     }
 });
 
 router.post('/user/register', async (req, res) => {
     try {
+        userValidator.validateUserInput(req.body)
         data = await JobService.postRegistration(req.body) 
         res.redirect('/job-roles')
     } catch (e) {
-        res.locals.errormassege = e
+        res.locals.errormessage = e.message
         res.render('registration', req.body)
     }
 });

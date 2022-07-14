@@ -1,11 +1,15 @@
 {% extends "layout_unbranded.html" %} 
-s
+
+{% block pageTitle %}
+  Competencies
+{% endblock %}
+
 {% block content %}
 <a href="/job-roles" class="govuk-back-link">back</a>
 <br />
 
-{% if errormassege %}
-<div id="error" class="govuk-error-message">{{errormassege}}</div> 
+{% if errormessage %}
+<div id="error" class="govuk-error-message">{{errormessage}}</div> 
 {% else %}
 
   {% if competencies and competencies.length > 0 %} 

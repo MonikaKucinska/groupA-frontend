@@ -1,11 +1,15 @@
 {% extends "layout_unbranded.html" %} 
 
+{% block pageTitle %}
+  Job Roles
+{% endblock %}
+
 {% block content %}
 <a href="/index" class="govuk-back-link">Back</a>
 <br />
 
-{% if errormassege %}
-<div id="error" class="govuk-error-message">{{errormassege}}</div> 
+{% if errormessage %}
+<div id="error" class="govuk-error-message">{{errormessage}}</div> 
 {% else %}
 
   {% if roles and roles.length > 0 %} 
