@@ -31,4 +31,14 @@ router.get('/band-comp/:id', async (req, res) => {
     }
 });
 
+router.post('/user/register', async (req, res) => {
+    try {
+        data = await JobService.postRegistration(req.body) 
+        res.redirect('/job-roles')
+    } catch (e) {
+        res.locals.errormassege = e
+        res.render('registration', req.body)
+    }
+});
+
 module.exports = router
