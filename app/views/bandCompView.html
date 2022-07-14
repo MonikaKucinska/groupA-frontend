@@ -1,0 +1,34 @@
+{% extends "layout_unbranded.html" %} 
+s
+{% block content %}
+<a href="/job-roles" class="govuk-back-link">back</a>
+<br />
+
+{% if errormassege %}
+<div id="error" class="govuk-error-message">{{errormassege}}</div> 
+{% else %}
+
+  {% if competencies and competencies.length > 0 %} 
+  <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">{{competencies[0].band_name}} band competencies</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Competency</th>
+          <th scope="col" class="govuk-table__header">Competency Inforamtion</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+      {% for comeptency in competencies %}
+        <tr class="govuk-table__row">
+          <td id="comp{{loop.index}}" class="govuk-table__cell">{{comeptency.comp_name}}</td>
+          <td class="govuk-table__cell">{{comeptency.comp_description}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are no competencies needed for that band. </p>
+  {% endif %}
+{% endif %}
+
+{% endblock %}
