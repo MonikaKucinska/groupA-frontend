@@ -31,9 +31,7 @@
           <td class="govuk-table__cell">{{role.cap_name}}</td>
           <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank">view {{role.role_name}} specification</a></td>
           <td class="govuk-table__cell">
-          <form action="/band-comp/{{role.band_id}}">
-            <a id= compByBandID{{loop.index}} href="#" onclick="parentNode.submit();">{{role.band_name}}</a>
-          </form>
+            <a id= compByBandID{{loop.index}} href="/band-comp/{{role.band_id}}">{{role.band_name}}</a>
         </td>
         </tr>
       {% endfor %}

@@ -1,10 +1,8 @@
 {% extends "layout_unbranded.html" %} 
 s
 {% block content %}
-<form action="/job-roles" method="GET">
-    <a href="#" class="govuk-back-link" onclick="parentNode.submit();">back</a>
+<a href="/job-roles" class="govuk-back-link">back</a>
 <br />
-</form>
 
 {% if errormassege %}
 <div id="error" class="govuk-error-message">{{errormassege}}</div> 

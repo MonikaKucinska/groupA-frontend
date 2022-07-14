@@ -29,17 +29,15 @@ module.exports.getJobRoles = async function () {
 }
 
 module.exports.getCompByBandID = async function (id) {
+    if(isNaN(id)){
+        throw new Error("Invalid ID")
+    }
     try{
-        if(isNaN(id)){
-            throw new Error("Invalid ID")
-        }
+       
         const response = await axios.get(BAND_URL + id)
         return response.data
     }catch(e){
-        if(e.message === "Invalid ID"){
-            throw new Error("Invalid ID")
-        }
-        else if(e.response === undefined){
+        if(e.response === undefined){
             throw new Error("Undefined error has occurred")
         }
         else if(e.response.status === 500){
