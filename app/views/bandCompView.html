@@ -1,7 +1,7 @@
 {% extends "layout_unbranded.html" %} 
 s
 {% block content %}
-<a href="/job-roles" class="govuk-back-link">back</a>
+<a href="/job-roles" class="govuk-back-link">Back</a>
 <br />
 
 {% if errormassege %}
@@ -10,11 +10,11 @@ s
 
   {% if competencies and competencies.length > 0 %} 
   <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m">{{competencies[0].band_name}} band competencies</caption>
+      <caption class="govuk-table__caption govuk-table__caption--m">{{competencies[0].band_name}} Band Competencies</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Competency</th>
-          <th scope="col" class="govuk-table__header">Competency Inforamtion</th>
+          <th scope="col" class="govuk-table__header">Competency Information</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">

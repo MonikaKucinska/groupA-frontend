@@ -1,0 +1,32 @@
+{% extends "layout_unbranded.html" %} 
+
+{% block content %}
+<a href="/job-roles" class="govuk-back-link">Back</a>
+<br />
+
+{% if errormassege %}
+<div id="error" class="govuk-error-message">{{errormassege}}</div> 
+{% else %}
+
+{% if responsibilities and responsibilities.length > 0 %}
+
+<h2>{{responsibilities[0].role_name}} Responsibilities</h2> 
+<ul>
+
+        {% for responsibility in responsibilities %}
+
+        <li>{{responsibility.resp_desc}}</li>
+        
+        <br/>
+        
+        {% endfor %}
+    </ul>
+
+   
+  {% else %}
+  <p>There are no responsibilities for that role. </p>
+  {% endif %}
+{% endif %}
+
+{% endblock %}
+
