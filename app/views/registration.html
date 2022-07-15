@@ -10,6 +10,9 @@
 
 {% block content %}
 
+{% set roles = ["Employee", "Admin"] %} 
+{% set locations = ["Belfast", "Birmingham", "Gdansk", "London"] %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -65,8 +68,9 @@
                 </label>
             </h1>
             <select class="govuk-select" id="role" name="role">
-              <option value="Employee" selected>Employee</option>
-              <option value="Admin" >Admin</option>
+              {% for role in roles %}
+                <option value="{{role}}" selected>{{role}}</option>
+              {% endfor %}
             </select>
           </div>
 
@@ -77,10 +81,9 @@
                 </label>
             </h1>
             <select class="govuk-select" id="location" name="location">
-              <option value="Belfast" selected>Belfast</option>
-              <option value="Birmingham" >Birmingham</option>
-              <option value="Gdansk" >Gdansk</option>
-              <option value="London" >London</option>
+              {% for location in locations %}
+                <option value="{{location}}" selected>{{location}}</option>
+              {% endfor %}
             </select>
           </div>
 

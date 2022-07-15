@@ -4,6 +4,7 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const userValidator = require('../validator/UserValidator.js');
 
+
 //take request body and response body
 //await for data from api, 
 //render job roles in separate rows if not error
@@ -34,9 +35,10 @@ router.get('/band-comp/:id', async (req, res) => {
 
 router.post('/user/register', async (req, res) => {
     try {
-        userValidator.validateUserInput(req.body)
-        data = await JobService.postRegistration(req.body) 
-        res.redirect('/job-roles')
+        if(userValidator.validateUserInput(req.body)){
+            data = await JobService.postRegistration(req.body) 
+            res.redirect('/job-roles')
+        }
     } catch (e) {
         res.locals.errormessage = e.message
         res.render('registration', req.body)
