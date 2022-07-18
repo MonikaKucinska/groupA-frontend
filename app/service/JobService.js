@@ -65,7 +65,12 @@ module.exports.postRegistration = async function (user) {
             throw new Error("Undefined error has occurred")
         }
         else if(e.response.status === 500){
-            throw new Error("An error occurred while executing this request")
+            if(e.response.data === undefined){
+                throw new Error("An error occurred while executing this request")
+            }
+            if(e.response.data.includes("Duplicate")){
+                throw new Error("Account with this email exists")
+            }
         }
         else if(e.response.status === 404 || e.response.status === 400){
             throw new Error("Bad request")

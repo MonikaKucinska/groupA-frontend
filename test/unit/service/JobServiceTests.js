@@ -218,6 +218,18 @@ describe('JobService', function () {
         expect(e.message).to.equal('An error occurred while executing this request')
       }
     })
+
+    it('should return error message when error 500 occurres and email is duplicate', async () => {
+      var mock = new MockAdapter(axios)
+      var data = "Duplicate"
+      mock.onPost('/api/user/register').reply(500, data)
+  
+      try{
+        var error = await JobService.postRegistration(user)
+      }catch(e){
+        expect(e.message).to.equal('Account with this email exists')
+      }
+    })
   
     it('should return error message when error 400 occurres', async () => {
       var mock = new MockAdapter(axios);
