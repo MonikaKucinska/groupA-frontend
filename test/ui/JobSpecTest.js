@@ -4,7 +4,8 @@ const chromedriver = require('chromedriver');
 const By = webdriver.By
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 var map = webdriver.promise.map;
-var chai = require('chai');  
+var chai = require('chai'); 
+var should = require('chai').should();
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 const JobService = require('../../app/service/JobService');
