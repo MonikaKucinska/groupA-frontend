@@ -8,14 +8,14 @@
 <div id="error" class="govuk-error-message">{{errormassege}}</div> 
 {% else %}
 
-{% if responsibilities and responsibilities.length > 0 %}
+{% if responsibilities %}
 
-<h2>{{responsibilities[0].role_name}} Responsibilities</h2> 
+<h2>{{responsibilities.role_name}} Responsibilities</h2> 
 <ul>
 
-        {% for responsibility in responsibilities %}
+        {% for responsibility in responsibilities.resp_desc %}
 
-        <li>{{responsibility.resp_desc}}</li>
+        <li>{{responsibility}}</li>
         
         <br/>
         
