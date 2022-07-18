@@ -27,6 +27,9 @@ const user = {
   role: "Admin",
   location: "Belfast"
 }
+const responsibility = {
+  resp_desc: 'You will work within a multi-skilled agile team to develop large-scale data processing software to meet user needs in demanding production environments.'
+}
 
 describe('JobService', function () {
   describe('getJobRoles', function (){
@@ -285,4 +288,106 @@ describe('JobService', function () {
  })
 
 })
+  
+  describe('getRespByRoleId', function (){
+    it('should return respinsibilities from response', async () => {
+      var mock = new MockAdapter(axios);
+  
+      var id = 1
+  
+      const data = [responsibility];
+      mock.onGet('/api/job-responsibility/' + id).reply(200, data)
+      var results = await JobService.getJobResponsibilityByID(id)
+      expect(results[0]).to.deep.equal(responsibility)
+    })
+  
+    it('should return error message when id is not a number', async () => {
+      var id = 'text'
+  
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal("Invalid ID")
+      }
+    })
+  
+    it('should return error message when error 500 occurres', async () => {
+      var mock = new MockAdapter(axios)
+      var id = 1
+      mock.onGet('/api/job-responsibility/' + id).reply(500)
+  
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal('An error occurred while executing this request')
+      }
+    })
+  
+    it('should return error message when error 400 occurres', async () => {
+      var mock = new MockAdapter(axios);
+  
+      var id = 1;
+  
+      mock.onGet('/api/job-responsibility/' + id).reply(400);
+  
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal('Bad request')
+      }
+    })
+  
+    it('should return error message when error 404 occurres', async () => {
+      var mock = new MockAdapter(axios);
+  
+      var id = 1;
+  
+      mock.onGet('/api/job-responsibility/' + id).reply(404);
+  
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal('Bad request')
+      }
+    })
+  
+    it('should return error message when error 503 occurres', async () => {
+      var mock = new MockAdapter(axios);
+  
+      var id = 1
+  
+      mock.onGet('/api/job-responsibility/' + id).reply(503);
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal('Server is unavaliable')
+      }
+    })
+    it('should return error message when unknown error occurres', async () => {
+      var mock = new MockAdapter(axios);
+  
+      var id = 1
+  
+      mock.onGet('/api/job-responsibility/' + id).reply(403);
+      try{
+        var error = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(e.message).to.equal('Not handled error had occurred')
+      }
+    })
+  
+   
+  
+    it('should return undefined, when the response is undefined (API not working)', async () => {
+      var id = 1
+  
+      try{
+        var res = await JobService.getJobResponsibilityByID(id)
+      }catch(e){
+        expect(res).to.equal(undefined)
+      }
+    })
+  })
+  
+  
 })

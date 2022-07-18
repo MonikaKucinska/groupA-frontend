@@ -24,6 +24,8 @@
           <th scope="col" class="govuk-table__header">Capability</th>
           <th scope="col" class="govuk-table__header">Sharepoint Link</th>
           <th scope="col" class="govuk-table__header">Band</th>
+          <th scope="col" class="govuk-table__header">Responsibilities</th>
+
 
         </tr>
       </thead>
@@ -37,6 +39,10 @@
           <td class="govuk-table__cell">
             <a id= compByBandID{{loop.index}} href="/band-comp/{{role.band_id}}">{{role.band_name}}</a>
         </td>
+        <td class="govuk-table__cell">
+          <a id= getJobResponsibilityByID{{loop.index}} href="/job-responsibility/{{role.role_id}}">View {{role.role_name}} Responsibilities</a>
+      </td>
+        
         </tr>
       {% endfor %}
       </tbody>
