@@ -68,6 +68,7 @@ module.exports.postRegistration = async function (user) {
             if(e.response.data === undefined){
                 throw new Error("An error occurred while executing this request")
             }
+            //looking for word duplicate can be used cause only email need to be unique in this case
             if(e.response.data.includes("Duplicate")){
                 throw new Error("Account with this email exists")
             }
