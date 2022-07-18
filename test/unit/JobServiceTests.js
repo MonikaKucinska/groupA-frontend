@@ -293,6 +293,4 @@ describe('JobService', function () {
       }
     })
   })
-  
-  
 })
