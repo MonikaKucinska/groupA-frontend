@@ -11,13 +11,13 @@ module.exports.validateUserInput = function (user) {
         throw new Error("Email is too long")
     }
     if(!this.validateUserEmail(user.email)){
-        throw new Error("Email or password is not valid")
+        throw new Error("Must use Kainos email")
     }
     if (user.password.length <8 || user.password.length >20) {
-        throw  new Error("Email or password is not valid")
+        throw  new Error("Password must between 8 and 20 characters")
     }
     if (!this.validatePassword(user.password)) {
-        throw new Error("Email or password is not valid")
+        throw new Error("Password must include at least one capital, small letter, number and special character")
     }
     if(user.first_name.length > 50) {
         throw new Error("First name is too long")
@@ -48,7 +48,7 @@ module.exports.validateUserInput = function (user) {
 
 module.exports.validateUserEmail = function (email) {
     var possibleEmailServices = "kainos.com"
-    var reg = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +  //part before @
+    var reg = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
         possibleEmailServices + "$"
     return email.match(reg)
 };

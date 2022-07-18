@@ -4,6 +4,8 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const userValidator = require('../validator/UserValidator.js');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 //take request body and response body
 //await for data from api, 
@@ -36,7 +38,10 @@ router.get('/band-comp/:id', async (req, res) => {
 router.post('/user/register', async (req, res) => {
     try {
         if(userValidator.validateUserInput(req.body)){
-            data = await JobService.postRegistration(req.body) 
+            const hash = bcrypt.hashSync(req.body.password, saltRounds);
+            const user = JSON.parse(JSON.stringify(req.body))
+            user.password = hash
+            data = await JobService.postRegistration(user) 
             res.redirect('/job-roles')
         }
     } catch (e) {
@@ -44,5 +49,4 @@ router.post('/user/register', async (req, res) => {
         res.render('registration', req.body)
     }
 });
-
 module.exports = router

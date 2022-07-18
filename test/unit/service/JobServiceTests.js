@@ -2,7 +2,7 @@ var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 var chai = require('chai');  
 const expect = chai.expect;
-const JobService = require('../../app/service/JobService');
+const JobService = require('../../../app/service/JobService');
 const role = {
   role_name: "Innovation Lead",
   role_description: "As an Innovation Lead (Consultant) in Kainos, youll be responsible will lead the team, working with the Innovation Lead in a dynamic and hands-on role which will involve managing and developing the team, implementing and shaping Kainos innovation strategy and effectively communicating the exciting work we undertake both internally and within the wider technology community.",
