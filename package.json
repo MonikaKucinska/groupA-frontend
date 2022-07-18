@@ -10,7 +10,7 @@
     "start": "node start",
     "build": "node lib/build/generate-assets",
     "serve": "node listen-on-port",
-    "test": "mocha test/unit/*.js",
+    "test": "mocha test/unit/**/*.js",
     "test-ui": "mocha test/ui/*.js --no-timeouts"
   },
   "dependencies": {
