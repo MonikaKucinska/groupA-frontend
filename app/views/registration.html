@@ -1,0 +1,97 @@
+{% extends "layout_unbranded.html" %}
+
+{% block pageTitle %}
+  Registration
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/index">Back</a>
+{% endblock %}
+
+{% block content %}
+
+{% set roles = ["Employee", "Admin"] %} 
+{% set locations = ["Belfast", "Birmingham", "Gdansk", "London"] %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Register</h1>
+
+        {% if errormessage %} 
+            <div id="regError" class="govuk-error-message">{{ errormessage }}</div> 
+        {% endif %}
+
+      <form class="form" action="/user/register" method="post">
+
+       
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="email">
+                    Email
+                </label>
+            </h1>
+                <input class="govuk-input" id="email" name="email" value="{{email}}" type="text" required>
+
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="password">
+                    Password
+                </label>
+            </h1>
+                <input class="govuk-input" id="password" name="password" value="{{password}}" type="password" required>
+
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="first_name">
+                    Forename
+                </label>
+            </h1>
+            <input class="govuk-input" id="first_name" name="first_name" value="{{first_name}}" type="text" required>
+
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="last_name">
+                    Surname
+                </label>
+            </h1>
+          <input class="govuk-input" id="last_name" name="last_name" value="{{last_name}}" type="text" required>
+
+          <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="phone_number">
+                Phone Number
+            </label>
+        </h1>
+      <input class="govuk-input" id="phone_number" name="phone_number" value="{{phone_number}}" type="text" required>
+
+      <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="role">
+                    Choose role:
+                </label>
+            </h1>
+            <select class="govuk-select" id="role" name="role">
+              {% for role in roles %}
+                <option value="{{role}}" selected>{{role}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="location">
+                    Choose location:
+                </label>
+            </h1>
+            <select class="govuk-select" id="location" name="location">
+              {% for location in locations %}
+                <option value="{{location}}" selected>{{location}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+        <br>
+        <button class="govuk-button" id="submit">Submit</button>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

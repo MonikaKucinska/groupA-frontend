@@ -61,7 +61,6 @@ module.exports.getJobResponsibilityByID = async function (id) {
         throw new Error("Invalid ID")
     }
     try{
-       
         const response = await axios.get(RESP_URL + id)
         return response.data
     }catch(e){
