@@ -18,15 +18,6 @@ const competency = {
   comp_description: "Sets, maintains, and ensures a clear direction for Kainos with highly focused priorities and results by articulating short, medium-and long-term strategies focused on adding real value to Kainos and our customers Creates joined up strategies and plans which help put into practice and support Kainos vision and long-term direction which are challenging yet achievable. Based upon external economic, social, technology and environmental trends. Enables the whole company to remain focused on business priorities, irrespective of challenges. Swiftly refocuses Kainos on new priorities as changing situations dictate. Models personal resilience and accountability for achieving strategic priorities and results. Balances challenging operational and strategic priorities. Establishes transparency and trust where results are discussed openly. Encourages and inspires the organisation to energise delivery, while driving a performance culture across Kainos and achieve results through others. Monitors and evaluates strategic outcomes, adjusting to ensure sustainability of the strategy and ongoing communication and engagement."
 }
 
-const user = {
-  email: "patryk.kiszelewski@kainos.com",
-  password: "Password123!",
-  first_name: "FirstName",
-  last_name: "LastName",
-  phone_number: "1234567890",
-  role: "Admin",
-  location: "Belfast"
-}
 const responsibility = {
   resp_desc: 'You will work within a multi-skilled agile team to develop large-scale data processing software to meet user needs in demanding production environments.'
 }
@@ -200,94 +191,6 @@ describe('JobService', function () {
     }
   })
  })
-  describe('postRegistration', function (){
-    it('should return user id from response', async () => {
-      var mock = new MockAdapter(axios);
-  
-      var id = 1
-
-      mock.onPost('/api/user/register').reply(200, id)
-      var results = await JobService.postRegistration(user)
-      expect(results).to.deep.equal(id)
-    })
-
-    it('should return error message when error 500 occurres', async () => {
-      var mock = new MockAdapter(axios)
-      mock.onPost('/api/user/register').reply(500)
-  
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('An error occurred while executing this request')
-      }
-    })
-
-    it('should return error message when error 500 occurres and email is duplicate', async () => {
-      var mock = new MockAdapter(axios)
-      var data = "Duplicate"
-      mock.onPost('/api/user/register').reply(500, data)
-  
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('Account with this email exists')
-      }
-    })
-  
-    it('should return error message when error 400 occurres', async () => {
-      var mock = new MockAdapter(axios);
-      mock.onPost('/api/user/register').reply(400);
-  
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('Bad request')
-      }
-    })
-  
-    it('should return error message when error 404 occurres', async () => {
-      var mock = new MockAdapter(axios);
-  
-      mock.onPost('/api/user/register').reply(404);
-  
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('Bad request')
-      }
-    })
-  
-    it('should return error message when error 503 occurres', async () => {
-      var mock = new MockAdapter(axios);
-      mock.onPost('/api/user/register').reply(503);
-
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('Server is unavaliable')
-      }
-    })
-    it('should return error message when unknown error occurres', async () => {
-      var mock = new MockAdapter(axios);
-      mock.onPost('/api/user/register').reply(403);
-
-      try{
-        var error = await JobService.postRegistration(user)
-      }catch(e){
-        expect(e.message).to.equal('Not handled error had occurred')
-      }
-    })
-  
-    it('should return undefined, when the response is undefined (API not working)', async () => {
-      try{
-        var res = await JobService.postRegistration(user)
-      }catch(e){
-        expect(res).to.equal(undefined)
-      }
-
- })
-
-})
   
   describe('getRespByRoleId', function (){
     it('should return respinsibilities from response', async () => {

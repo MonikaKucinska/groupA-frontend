@@ -285,20 +285,6 @@ describe('UserValidator', function () {
         expect(function(){UserValidator.validateUserInput(user)}).to.throw(Error, "This role does not exist")
       })
 
-      it('should return error when role does not exist', () => {
-        let user = {
-            email: "patryk.kiszelewski@kainos.com",
-            password: "Password123!",
-            first_name: "FirstName",
-            last_name: "Last-Name",
-            phone_number: "1234567890",
-            role: "Sales Employee",
-            location: "Belfast"
-        }
-
-        expect(function(){UserValidator.validateUserInput(user)}).to.throw(Error, "This role does not exist")
-      })
-
       it('should return error when location does not exist', () => {
         let user = {
             email: "patryk.kiszelewski@kainos.com",
