@@ -5,6 +5,7 @@ const By = webdriver.By
 chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 var map = webdriver.promise.map;
 var chai = require('chai');
+var should = require('chai').should();
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
 const JobService = require('../../app/service/JobService');
@@ -41,7 +42,7 @@ describe('Page band-comp should include competency and competency information', 
         bandComp.should.equal(bandName + " band competencies");
         await driver.quit();
 
-    }).timedOut(4000)
+    }).timeout(4000)
 
     it('page band competencies should include competencies name and information', async () => {
 
@@ -71,7 +72,7 @@ describe('Page band-comp should include competency and competency information', 
 
         await driver.quit();
 
-    }).timeOut(4000)
+    }).timeout(4000)
     it('page should always display 6 competencies for eachband', async () => {
 
         // webdriver 
