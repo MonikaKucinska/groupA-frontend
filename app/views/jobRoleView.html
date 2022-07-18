@@ -8,8 +8,8 @@
 <a href="/index" class="govuk-back-link">Back</a>
 <br />
 
-{% if errormassege %}
-<div id="error" class="govuk-error-message">{{errormassege}}</div> 
+{% if errormessage %}
+<div id="error" class="govuk-error-message">{{errormessage}}</div> 
 {% else %}
 
   {% if roles and roles.length > 0 %} 
@@ -24,6 +24,8 @@
           <th scope="col" class="govuk-table__header">Capability</th>
           <th scope="col" class="govuk-table__header">Sharepoint Link</th>
           <th scope="col" class="govuk-table__header">Band</th>
+          <th scope="col" class="govuk-table__header">Responsibilities</th>
+
 
         </tr>
       </thead>
@@ -33,10 +35,14 @@
           <td id="{{loop.index}}" class="govuk-table__cell">{{role.role_name}}</td>
           <td class="govuk-table__cell">{{role.role_description}}</td>
           <td class="govuk-table__cell">{{role.cap_name}}</td>
-          <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank">view {{role.role_name}} specification</a></td>
+          <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank">View {{role.role_name}} Specification</a></td>
           <td class="govuk-table__cell">
             <a id= compByBandID{{loop.index}} href="/band-comp/{{role.band_id}}">{{role.band_name}}</a>
         </td>
+        <td class="govuk-table__cell">
+          <a id= getJobResponsibilityByID{{loop.index}} href="/job-responsibility/{{role.role_id}}">View {{role.role_name}} Responsibilities</a>
+      </td>
+        
         </tr>
       {% endfor %}
       </tbody>
