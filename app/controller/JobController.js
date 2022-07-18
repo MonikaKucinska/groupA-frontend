@@ -35,6 +35,11 @@ router.get('/band-comp/:id', async (req, res) => {
     }
 });
 
+//take request body and response body
+//check if passed user is valid, if not, throw exception, and render error message
+//if ok, hash password, and await for id form post user
+//redirect to /job-roles if not error
+//if error occurres, render error message
 router.post('/user/register', async (req, res) => {
     try {
         if(userValidator.validateUserInput(req.body)){
