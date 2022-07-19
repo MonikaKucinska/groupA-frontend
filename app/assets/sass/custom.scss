@@ -124,18 +124,18 @@ h1, .govuk-table__caption {
   color: $primary-grey;
 }
 
-.govuk-table__cell:nth-child(4), .govuk-table__cell:nth-child(5), .govuk-table__cell:nth-child(6){
+.govuk-table__cell:nth-child(4), .govuk-table__cell:nth-child(5), .govuk-table__cell:nth-child(6), .job-cap {
   text-align: center;
 }
 
 .job-roles-link {
   letter-spacing: normal;
-  border: 2px solid $primary-green;
-  padding: 5px 20px;
+  padding: 5px ;
   background-color: $white;
   color: $primary-green;
   text-align: center;
-
+  border: 2px solid $primary-green;
+  display: block;
 }
 
 .job-roles-link:hover, .job-roles-link:active, .job-roles-link:focus {
@@ -154,16 +154,23 @@ h1, .govuk-table__caption {
   color: $primary-grey;
 }
 
-.job-comp {
-  color: $secondary-blue;
+.job-comp, .job-role {
+  color: $primary-blue;
   text-transform: uppercase;
   text-align: center;
   vertical-align:middle;
 }
 
-.comp-desc {
+
+.comp-desc, .job-desc{
   text-align: justify;
 }
+
+.govuk-table__cell {
+  vertical-align: middle;
+}
+
+
 
 @media screen and (min-width:1023px) { 
 a {
@@ -179,4 +186,8 @@ a {
   width: 100%;
   margin-top: 2rem;
 }
+}
+
+.govuk-width-container {
+  max-width: 1300px;
 }
