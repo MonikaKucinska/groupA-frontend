@@ -3,7 +3,6 @@
 //     location : ["Belfast", "Birmingham", "Gdansk", "London"]
 // }
 
-const { TouchSequence } = require("selenium-webdriver")
 
 module.exports.validateUserInput = function (role) {
     if(Object.values(role).some(x => x === null || x === '')){
