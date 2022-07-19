@@ -4,8 +4,8 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
+const bcrypt = require('bcryptjs')
 
-// const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 //take request body and response body
@@ -70,6 +70,5 @@ router.get('/job-responsibility/:id', async (req, res) => {
         res.render('jobRespView')
     }
 });
-
 
 module.exports = router
