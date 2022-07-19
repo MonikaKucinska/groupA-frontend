@@ -22,10 +22,6 @@ $primary-mid-blue: #41679f;
 $primary-dark-green: #004631;
 $primary-grey: #575756;
 
-$secondary-orange: #ec6608;
-$secondary-blue: #009fe3;
-$secondary-green: #cfd600;
-
 $text-color: #252d4f;
 
 *{
@@ -40,10 +36,9 @@ a {
 }
 
 a:hover, a:focus, a:active {
-  color: $primary-grey;
   text-decoration-line: underline;
   text-decoration-style:solid;
-  text-decoration-color: $primary-blue;
+  text-decoration-color: $primary-green;
 }
 
 .govuk-header__container {
