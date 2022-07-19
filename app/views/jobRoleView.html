@@ -1,55 +1,53 @@
-{% extends "layout_unbranded.html" %} 
+{% extends "layout_custom.html" %} 
 
 {% block pageTitle %}
   Job Roles
 {% endblock %}
 
-{% block content %}
-<a href="/index" class="govuk-back-link">Back</a>
-<br />
-
-{% if errormessage %}
-<div id="error" class="govuk-error-message">{{errormessage}}</div> 
-{% else %}
-
-  {% if roles and roles.length > 0 %} 
-  <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m">Job Roles</caption>
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Role</th>
-
-
-          <th scope="col" class="govuk-table__header">Role Description</th>
-          <th scope="col" class="govuk-table__header">Capability</th>
-          <th scope="col" class="govuk-table__header">Sharepoint Link</th>
-          <th scope="col" class="govuk-table__header">Band</th>
-          <th scope="col" class="govuk-table__header">Responsibilities</th>
-
-
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-      {% for role in roles %}
-        <tr class="govuk-table__row">
-          <td id="{{loop.index}}" class="govuk-table__cell">{{role.role_name}}</td>
-          <td class="govuk-table__cell">{{role.role_description}}</td>
-          <td class="govuk-table__cell">{{role.cap_name}}</td>
-          <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank">View {{role.role_name}} Specification</a></td>
-          <td class="govuk-table__cell">
-            <a id= compByBandID{{loop.index}} href="/band-comp/{{role.band_id}}">{{role.band_name}}</a>
-        </td>
-        <td class="govuk-table__cell">
-          <a id= getJobResponsibilityByID{{loop.index}} href="/job-responsibility/{{role.role_id}}">View {{role.role_name}} Responsibilities</a>
-      </td>
-        
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>There are no job roles. </p>
-  {% endif %}
-{% endif %}
-
+{% block beforeContent %}
+  <a href="/index.html" class="govuk-back-link">Back</a>
 {% endblock %}
+
+{% block content %}
+  {% if errormessage %}
+  <div id="error" class="govuk-error-message">{{errormessage}}</div> 
+  {% else %}
+
+    {% if roles and roles.length > 0 %} 
+    <table class="govuk-header__container">
+        <caption class="govuk-table__caption govuk-table__caption--m">Job Roles</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Role</th>
+            <th scope="col" class="govuk-table__header">Role Description</th>
+            <th scope="col" class="govuk-table__header">Capability</th>
+            <th scope="col" class="govuk-table__header">Sharepoint Link</th>
+            <th scope="col" class="govuk-table__header">Band</th>
+            <th scope="col" class="govuk-table__header">Responsibilities</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+        {% for role in roles %}
+          <tr class="govuk-table__row">
+            <td id="{{loop.index}}" class="govuk-table__cell job-role">{{role.role_name}}</td>
+            <td class="govuk-table__cell job-desc">{{role.role_description}}</td>
+            <td class="govuk-table__cell job-cap">{{role.cap_name}}</td>
+            <td class="govuk-table__cell"><a href={{role.sharepoint_url}} target="_blank" class="job-roles-link ">View</a></td>
+            <td class="govuk-table__cell">
+              <a id= compByBandID{{loop.index}} href="/band-comp/{{role.band_id}}" class="job-roles-link">{{role.band_name}}</a>
+            </td>
+            <td class="govuk-table__cell">
+              <a id= getJobResponsibilityByID{{loop.index}} href="/job-responsibility/{{role.role_id}}" class="job-roles-link">View</a>
+            </td>
+           </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>There are no job roles.</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+
+

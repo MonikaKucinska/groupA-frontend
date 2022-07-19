@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
 require('dotenv').config({path: '.env'});
 
-
 //take request body and response body
 //await for data from api, 
 //render job roles in separate rows if not error
@@ -51,8 +50,10 @@ router.post('/user/register', async (req, res) => {
                         .digest('hex');
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hashedStr
-            data = await UserService.postRegistration(user) 
-            res.redirect('/index')
+            data = await UserService.postRegistration(user)
+            let success = "Registration was successful" 
+            res.locals.success = success 
+            res.render('registation')
         }
     } catch (e) {
         res.locals.errormessage = e.message
@@ -92,3 +93,4 @@ router.get('/job-responsibility/:id', async (req, res) => {
 });
 
 module.exports = router
+
