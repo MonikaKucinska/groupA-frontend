@@ -13,7 +13,7 @@ module.exports.validateLoginInput = function(user){
     if(!this.validateUserEmail(user.email)){
         throw new Error("Email or Password is incorect")
     }
-    if (user.password.length <8 || user.password.length >20) {
+    if (user.password.length < 8 || user.password.length > 20) {
         throw new Error("Email or Password is incorect")
     }
     if (!this.validatePassword(user.password)) {
