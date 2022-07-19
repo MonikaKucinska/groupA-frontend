@@ -4,6 +4,7 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
+const AddJobRoleValidator = require ('../validator/AddJobRoleValidator.js'); 
 const bcrypt = require('bcryptjs')
 
 const saltRounds = 10;
@@ -83,6 +84,7 @@ router.post('/job-roles', async (req, res) => {
             const jobRole = JSON.parse(JSON.stringify(req.body))
             data = await JobService.addJobRole(jobRole) 
             res.redirect('/job-roles')
+            //res.render('addJobRoleView')
         }
     } catch (e) {
         res.locals.errormessage = e.message

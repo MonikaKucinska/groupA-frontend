@@ -1,11 +1,11 @@
-{% extends "layout_unbranded.html" %}
+{% extends "layout_custom.html" %}
 
 {% block pageTitle %}
   Add a Job Role
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/index">Back</a>
+  <a class="govuk-back-link" href="/index.html">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -18,13 +18,15 @@
 
       <h1 class="govuk-heading-xl">Add a Job Role</h1>
 
-        {% if errormessage %} 
+      {% if success %}
+        <div id="regError" class="govuk-error-message reg-success">{{ success }}</div>   
+        {% endif%}  
+      
+      {% if errormessage %} 
              <div id="regError" class="govuk-error-message">{{ errormessage }}</div> 
         {% endif %}
 
       <form class="form" action="/job-roles" method="post">
-
-       
         <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="email">
@@ -45,15 +47,16 @@
                     Sharepoint URL
                 </label>
             </h1>
+            
             <input class="govuk-input" id="sharepoint_url" name="sharepoint_url" value="{{sharepoint_url}}" type="text" required> 
-
+</div>
       <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="cap_name">
                     Choose Capability:
                 </label>
             </h1>
-            <select class="govuk-select" id="capability" name="cap_name">
+            <select class="govuk-select" id="cap_name" name="cap_name">
               {% for cap_name in capability %}
                 <option value="{{cap_name}}" selected>{{cap_name}}</option>
               {% endfor %}
@@ -74,7 +77,7 @@
           </div>
 
         <br>
-        <button class="govuk-button" id="submit">Submit</button>
+        <button class="jobs-btn jobs-btn__green" id="submit">Submit</button>
       </form>
 
     </div>
