@@ -5,8 +5,9 @@ const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
 
-const bcrypt = require('bcryptjs')
-const saltRounds = 10;
+const crypto = require('crypto');
+require('dotenv').config({path: '.env'});
+
 
 //take request body and response body
 //await for data from api, 
@@ -44,9 +45,11 @@ router.get('/band-comp/:id', async (req, res) => {
 router.post('/user/register', async (req, res) => {
     try {
         if(userValidator.validateUserInput(req.body)){
-            const hash = bcrypt.hashSync(req.body.password, saltRounds);
+            const hashedStr = crypto.createHmac('sha256', process.env.SECRET_KEY)
+                        .update(req.body.password)
+                        .digest('hex');
             const user = JSON.parse(JSON.stringify(req.body))
-            user.password = hash
+            user.password = hashedStr
             data = await UserService.postRegistration(user) 
             res.redirect('/index')
         }
@@ -59,11 +62,12 @@ router.post('/user/register', async (req, res) => {
 router.post('/user/login', async (req, res) => {
     try {
         if(userValidator.validateLoginInput(req.body)){
-            const hash = bcrypt.hashSync(req.body.password, saltRounds);
+            const hashedStr = crypto.createHmac('sha256', process.env.SECRET_KEY)
+                        .update(req.body.password)
+                        .digest('hex');
             const user = JSON.parse(JSON.stringify(req.body))
-            user.password = hash
+            user.password = hashedStr
             data = await UserService.postLogin(user) 
-
             res.redirect('/index')
         }
     } catch (e) { 
@@ -84,6 +88,5 @@ router.get('/job-responsibility/:id', async (req, res) => {
         res.render('jobRespView')
     }
 });
-
 
 module.exports = router

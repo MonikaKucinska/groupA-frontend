@@ -38,6 +38,7 @@ module.exports.postRegistration = async function (user) {
 module.exports.postLogin = async function (user) {
     try{
         const response = await axios.post(LOGIN_URL, user)
+        
         return response.data
     }catch(e){
         throw new Error("Not handled error had occurred")
