@@ -1,0 +1,192 @@
+// The unbranded stylesheet is used if you need to create pages in your
+// prototype without the GOV.UK branding.
+//
+// See localhost:3000/docs/templates/blank-unbranded
+
+// Import settings first so we can override them before importing all of GOV.UK Frontend
+// If you need to enable compatibility mode or the legacy palette, do that *before* this import.
+@import "node_modules/govuk-frontend/govuk/settings/all";
+
+// Override the default GOV.UK Frontend font stack
+$govuk-font-family: "Century Gothic", "Galano Grotesque", sans-serif;
+
+// Override the canvas background colour, which is normally grey to blend with the GOV.UK footer.
+$govuk-canvas-background-colour: $govuk-body-background-colour;
+
+@import "application";
+
+// colors
+$primary-blue: #283583;
+$primary-green: #61a83f;
+$white: #ffffff;
+$primary-mid-blue: #41679f;
+$primary-dark-green: #004631;
+$primary-grey: #575756;
+$text-color: #252d4f;
+
+
+*{
+  font-family: "Century Gothic", sans-serif;
+}
+
+// styling links
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color:$primary-grey !important;
+  letter-spacing: 2px;
+}
+
+a:hover, a:focus, a:active {
+  text-decoration-line: underline;
+  text-decoration-style:solid;
+  text-decoration-color: $primary-green;
+}
+
+.govuk-back-link::before, .govuk-back-link::after {
+  margin-top: 1rem;
+}
+
+.govuk-back-link {
+  padding-top: 0.7rem;
+}
+
+.job-roles-link {
+  letter-spacing: normal;
+  padding: 5px ;
+  background-color: $white;
+  color: $primary-green;
+  text-align: center;
+  border: 2px solid $primary-green;
+  display: block;
+}
+
+.job-roles-link:hover, .job-roles-link:active, .job-roles-link:focus {
+  text-decoration: none;
+  background-color: $primary-green;
+  color: $white !important;
+}
+
+// styling buttons
+.jobs-btn {
+  margin-top: 1rem;
+  width: 100%;
+  text-transform: uppercase;
+  background-color: $white;
+  border: 2px solid $primary-blue;
+  padding: 15px;
+  color: $primary-blue;
+}
+
+.jobs-btn:hover {
+  background-color: $primary-blue;
+  color: $white;
+  cursor: pointer;
+}
+
+.jobs-btn__green {
+  border: 2px solid $primary-green;
+  color: $primary-green;
+}
+
+.jobs-btn__green:hover {
+  background-color: $primary-green;
+}
+
+// styling header
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link{
+  text-align: right;
+  flex: auto;
+}
+
+// main styling
+.govuk-header__container {
+  border-bottom-color: $primary-blue;
+}
+
+h1, .govuk-table__caption, .govuk-label, .govuk-table__header {
+  text-transform: uppercase;
+  font-family: 'Galano Grotesque', sans-serif;
+  
+}
+
+h1, .govuk-table__caption {
+  color: $text-color !important;
+}
+
+.govuk-label {
+  color: $primary-dark-green;
+}
+
+.govuk-input, .govuk-select{
+  margin-bottom: 2.5rem;
+  border: 2px solid $primary-grey
+}
+
+.govuk-table__header{
+  color: $primary-blue;
+  text-align: center;
+}
+
+.govuk-table__cell {
+  color: $primary-grey;
+}
+
+.govuk-table__cell:nth-child(4), .govuk-table__cell:nth-child(5), .govuk-table__cell:nth-child(6), .job-cap {
+  text-align: center;
+}
+
+.reg-success {
+  color:$primary-green !important;
+}
+
+.job-resp {
+  padding-bottom: 1.2rem;
+  letter-spacing: 1px;
+  color: $primary-grey;
+}
+
+.job-comp, .job-role {
+  color: $primary-blue;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align:middle;
+}
+
+.comp-desc, .job-desc{
+  text-align: justify;
+}
+
+.govuk-table__cell {
+  vertical-align: middle;
+}
+
+
+// media query for laptops
+@media screen and (min-width:1023px) { 
+a {
+  letter-spacing: 4px;
+}
+
+.jobs-btn {
+  width: 30%;
+  margin-top: 0;
+}
+
+.jobs-btn__green {
+  width: 100%;
+  margin-top: 2rem;
+}
+}
+
+.govuk-width-container {
+  max-width: 1300px;
+}

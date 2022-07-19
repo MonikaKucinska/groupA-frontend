@@ -4,8 +4,8 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
-
 const bcrypt = require('bcryptjs')
+
 const saltRounds = 10;
 
 //take request body and response body
@@ -47,8 +47,10 @@ router.post('/user/register', async (req, res) => {
             const hash = bcrypt.hashSync(req.body.password, saltRounds);
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hash
-            data = await UserService.postRegistration(user) 
-            res.redirect('/job-roles')
+            data = await UserService.postRegistration(user)
+            let success = "Registration was successful" 
+            res.locals.success = success 
+            res.render('registation')
         }
     } catch (e) {
         res.locals.errormessage = e.message

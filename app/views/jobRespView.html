@@ -1,32 +1,28 @@
-{% extends "layout_unbranded.html" %} 
+{% extends "layout_custom.html" %} 
+
+{% block pageTitle %}
+  Responsibilities
+{% endblock %}
+
+{% block beforeContent %}
+  <a href="/job-roles" class="govuk-back-link">Back</a>
+{% endblock %}
 
 {% block content %}
-<a href="/job-roles" class="govuk-back-link">Back</a>
-<br />
-
-{% if errormassege %}
-<div id="error" class="govuk-error-message">{{errormassege}}</div> 
-{% else %}
-
-{% if responsibilities %}
-
-<h2 style="font-family:HelveticaNeue">{{responsibilities.role_name}} Responsibilities</h2> 
-<ul>
-
-        {% for responsibility in responsibilities.resp_desc %}
-
-        <li style="font-size:19px; font-family:HelveticaNeue">{{responsibility}}</li>
-        
-        <br/>
-        
-        {% endfor %}
-    </ul>
-
-   
+  {% if errormassege %}
+    <div id="error" class="govuk-error-message">{{errormassege}}</div> 
   {% else %}
-  <p>There are no responsibilities for that role. </p>
+    {% if responsibilities %}
+      <h1>{{responsibilities.role_name}} Responsibilities</h1> 
+      <ul>
+        {% for responsibility in responsibilities.resp_desc %}
+          <li class="job-resp">{{responsibility}}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>There are no responsibilities for that role. </p>
+    {% endif %}
   {% endif %}
-{% endif %}
 
 {% endblock %}
 
