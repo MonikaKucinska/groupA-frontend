@@ -26,7 +26,7 @@ describe('Page job responsibility', () => {
         expect(await driver.findElement(By.xpath('//*[@id="main-content"]/table/thead/tr/th[6]')).getText()).to.equal('Responsibilities');
 
         await driver.quit();
-    }).timeout(4000)
+    }).timeout(5000)
 
     it('link to responsibility should be active', async () => {
 
@@ -43,7 +43,7 @@ describe('Page job responsibility', () => {
 
         await driver.quit();
 
-    }).timeout(4000)
+    }).timeout(6000)
 
     it('page job-responsibility displays responsibilities of job role', async () => {
 
@@ -55,25 +55,25 @@ describe('Page job responsibility', () => {
         //launch job-roles page
         driver.get('http://localhost:3000/job-roles');
        
-        //get role name to assert it later
+        //get role name to assert it next step
         let jobRoleName = await driver.findElement(By.xpath('//*[@id="1"]')).getText().then(function (value) {
             return value
         })
         
         //Job Responsibilities new column
-        await driver.findElement(By.xpath('//*[@id="main-content"]/table/tbody/tr[1]/td[6]')).click()
+        await driver.findElement(By.id('getJobResponsibilityByID1')).click()
 
         //find header of job resposnsibilities page 
-        var jobRespHead = await driver.findElement(By.xpath("//*[@id=\"main-content\"]/h2")).getText().then(function (value) {
+        var jobRespHead = await driver.findElement(By.xpath('//*[@id="main-content"]/h2')).getText().then(function (value) {
             return value
         });
         //assert header with job role
-        jobRespHead.should.equal(jobRoleName + " Reponsibililities");
+        jobRespHead.should.equal(jobRoleName + " Responsibilities");
        
         await driver.quit();
 
     
-    }).timeout(4000)
+    }).timeout(6000)
 
     it('back button should be active', async () => {
 
