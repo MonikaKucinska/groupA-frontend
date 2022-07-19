@@ -15,19 +15,21 @@ $govuk-canvas-background-colour: $govuk-body-background-colour;
 
 @import "application";
 
+// colors
 $primary-blue: #283583;
 $primary-green: #61a83f;
 $white: #ffffff;
 $primary-mid-blue: #41679f;
 $primary-dark-green: #004631;
 $primary-grey: #575756;
-
 $text-color: #252d4f;
+
 
 *{
   font-family: "Century Gothic", sans-serif;
 }
 
+// styling links
 a {
   text-decoration: none;
   text-transform: uppercase;
@@ -41,23 +43,31 @@ a:hover, a:focus, a:active {
   text-decoration-color: $primary-green;
 }
 
-.govuk-header__container {
-  border-bottom-color: $primary-blue;
+.govuk-back-link::before, .govuk-back-link::after {
+  margin-top: 1rem;
 }
 
-.nav-links {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.govuk-back-link {
+  padding-top: 0.7rem;
 }
 
-.nav-link{
-  text-align: right;
-  flex: auto;
+.job-roles-link {
+  letter-spacing: normal;
+  padding: 5px ;
+  background-color: $white;
+  color: $primary-green;
+  text-align: center;
+  border: 2px solid $primary-green;
+  display: block;
 }
 
+.job-roles-link:hover, .job-roles-link:active, .job-roles-link:focus {
+  text-decoration: none;
+  background-color: $primary-green;
+  color: $white !important;
+}
+
+// styling buttons
 .jobs-btn {
   margin-top: 1rem;
   width: 100%;
@@ -83,18 +93,37 @@ a:hover, a:focus, a:active {
   background-color: $primary-green;
 }
 
-.govuk-back-link::before, .govuk-back-link::after {
-  margin-top: 1rem;
+// styling header
+.nav-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.govuk-back-link {
-  padding-top: 0.7rem;
+.nav-link{
+  text-align: right;
+  flex: auto;
+}
+
+// main styling
+.govuk-header__container {
+  border-bottom-color: $primary-blue;
+}
+
+h1, .govuk-table__caption, .govuk-label, .govuk-table__header {
+  text-transform: uppercase;
+  font-family: 'Galano Grotesque', sans-serif;
+  
 }
 
 h1, .govuk-table__caption {
-  text-transform: uppercase;
-  font-family: 'Galano Grotesque', sans-serif;
   color: $text-color !important;
+}
+
+.govuk-label {
+  color: $primary-dark-green;
 }
 
 .govuk-input, .govuk-select{
@@ -102,15 +131,7 @@ h1, .govuk-table__caption {
   border: 2px solid $primary-grey
 }
 
-.govuk-label {
-  text-transform: uppercase;
-  font-family: 'Galano Grotesque', sans-serif;
-  color: $primary-dark-green;
-}
-
 .govuk-table__header{
-  text-transform: uppercase;
-  font-family: 'Galano Grotesque', sans-serif;
   color: $primary-blue;
   text-align: center;
 }
@@ -121,22 +142,6 @@ h1, .govuk-table__caption {
 
 .govuk-table__cell:nth-child(4), .govuk-table__cell:nth-child(5), .govuk-table__cell:nth-child(6), .job-cap {
   text-align: center;
-}
-
-.job-roles-link {
-  letter-spacing: normal;
-  padding: 5px ;
-  background-color: $white;
-  color: $primary-green;
-  text-align: center;
-  border: 2px solid $primary-green;
-  display: block;
-}
-
-.job-roles-link:hover, .job-roles-link:active, .job-roles-link:focus {
-  text-decoration: none;
-  background-color: $primary-green;
-  color: $white !important;
 }
 
 .reg-success {
@@ -156,7 +161,6 @@ h1, .govuk-table__caption {
   vertical-align:middle;
 }
 
-
 .comp-desc, .job-desc{
   text-align: justify;
 }
@@ -166,7 +170,7 @@ h1, .govuk-table__caption {
 }
 
 
-
+// media query for laptops
 @media screen and (min-width:1023px) { 
 a {
   letter-spacing: 4px;
