@@ -5,7 +5,7 @@ const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs')
 const saltRounds = 10;
 
 //take request body and response body
@@ -48,11 +48,27 @@ router.post('/user/register', async (req, res) => {
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hash
             data = await UserService.postRegistration(user) 
-            res.redirect('/job-roles')
+            res.redirect('/index')
         }
     } catch (e) {
         res.locals.errormessage = e.message
         res.render('registration', req.body)
+    }
+});
+
+router.post('/user/login', async (req, res) => {
+    try {
+        if(userValidator.validateLoginInput(req.body)){
+            const hash = bcrypt.hashSync(req.body.password, saltRounds);
+            const user = JSON.parse(JSON.stringify(req.body))
+            user.password = hash
+            data = await UserService.postLogin(user) 
+
+            res.redirect('/index')
+        }
+    } catch (e) { 
+        res.locals.errormessage = e.message
+        res.render('login', req.body)
     }
 });
 

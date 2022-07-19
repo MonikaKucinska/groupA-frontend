@@ -3,6 +3,7 @@ const { response } = require('express');
 axios.defaults.baseURL = process.env.API_URL;
 
 REGISTRATION_URL = '/api/user/register'
+LOGIN_URL = '/api/user/login'
 
 module.exports.postRegistration = async function (user) {
     try{
@@ -30,5 +31,15 @@ module.exports.postRegistration = async function (user) {
         else{
             throw new Error("Not handled error had occurred")
         }
+    }
+}
+
+
+module.exports.postLogin = async function (user) {
+    try{
+        const response = await axios.post(LOGIN_URL, user)
+        return response.data
+    }catch(e){
+        throw new Error("Not handled error had occurred")
     }
 }

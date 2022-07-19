@@ -3,6 +3,25 @@ const dropDownData = {
     location : ["Belfast", "Birmingham", "Gdansk", "London"]
 }
 
+module.exports.validateLoginInput = function(user){
+    if(Object.values(user).some(x => x === null || x === '')){
+        throw new Error("Each field must be filled in")
+    }
+    if (user.email.length > 50) {
+        throw new Error("Email or Password is incorect")
+    }
+    if(!this.validateUserEmail(user.email)){
+        throw new Error("Email or Password is incorect")
+    }
+    if (user.password.length <8 || user.password.length >20) {
+        throw new Error("Email or Password is incorect")
+    }
+    if (!this.validatePassword(user.password)) {
+        throw new Error("Email or Password is incorect")
+    }
+    return true
+}
+
 module.exports.validateUserInput = function (user) {
     if(Object.values(user).some(x => x === null || x === '')){
         throw new Error("Each field must be filled in")
