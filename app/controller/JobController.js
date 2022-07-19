@@ -51,9 +51,11 @@ router.post('/user/register', async (req, res) => {
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hashedStr
             data = await UserService.postRegistration(user)
+
             let success = "Registration was successful" 
             res.locals.success = success 
-            res.render('registation')
+
+            res.render('registration')
         }
     } catch (e) {
         res.locals.errormessage = e.message
@@ -67,6 +69,7 @@ router.post('/user/login', async (req, res) => {
             const hashedStr = crypto.createHmac('sha256', process.env.SECRET_KEY)
                         .update(req.body.password)
                         .digest('hex');
+
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hashedStr
             data = await UserService.postLogin(user) 
