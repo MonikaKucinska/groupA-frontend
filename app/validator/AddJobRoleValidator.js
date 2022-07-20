@@ -1,7 +1,7 @@
-// const dropDownData = {
-//     role : ["Employee", "Admin"],
-//     location : ["Belfast", "Birmingham", "Gdansk", "London"]
-// }
+const dropDownData = {
+    band: ["Leaders", "Principal", "Manager", "Consultant", "Senior Associate", "Associate", "Trainee", "Apprentice"],
+    capability : ["Engineering", "Platforms", "Data", "Artificial Intelligence", "Cyber Security", "Workday", "Experience Design", "Product", "Delivery", "Operations", "Business Development and Marketing", "Organisational Strategy and Planning", "People", "Commercial and Financial Management", "Business Services Support"]
+}
 
 
 module.exports.validateUserInput = function (role) {
@@ -11,8 +11,8 @@ module.exports.validateUserInput = function (role) {
     if (role.role_name.length > 50) {
         throw new Error("Role name is too long")
     }
-    if(!this.validateJobRoleName(role.role_name)){ 
-        throw new Error("Job role name can only consist of letters")
+    if(!this.valdateRoleName(role.role_name)){
+        throw new Error("Role name can only consist of letters")
     }
     if (role.role_description.length > 1500) {
         throw new Error("Role description is too long")
@@ -26,10 +26,16 @@ module.exports.validateUserInput = function (role) {
     if(!this.validateSharepointURL(role.sharepoint_url)){ 
         throw new Error("Invalid URL")
     }
+    if(!this.validateCapability(role.capability)) {
+        throw new Error("Invalid Capability")
+    }
+    if(!this.validateBand(role.band)) {
+        throw new Error("Invalid Band")
+    }
 
-   
     return true
 }
+
 //sharepoint url validation
 module.exports.validateSharepointURL = function (sharepoint_url) {
     var reg = "https://kainossoftwareltd.sharepoint.com/people/Job%20Specifications/";
@@ -38,29 +44,22 @@ module.exports.validateSharepointURL = function (sharepoint_url) {
 
 
 
-module.exports.validateJobRoleName = function(role_name){
-    var reg = "^[a-zA-Z]+$"
+module.exports.valdateRoleName = function (role_name) {
+    var reg = /^[A-Za-z\s]*$/;
     return role_name.match(reg)
 }
 
 
-module.exports.validateJobRoleDescription = function(role_description){
-    var reg = "^[a-zA-Z-']*$"
+module.exports.validateJobRoleDescription = function (role_description) {
+    var reg = /^[A-Za-z\s-',()!.]*$/;
     return role_description.match(reg)
 }
 
-// module.exports.valdiatePhoneNumber = function(phoneNumber){
-//     var reg = "^[0-9]+$"
-//     return phoneNumber.match(reg)
-// }
 
-// module.exports.validateRole = function(role){
-//     return dropDownData.role.includes(role)
-// };
+module.exports.validateCapability = function(capability){
+    return dropDownData.capability.includes(capability)
+};
 
-// module.exports.validateLocation = function(location){
-//     return dropDownData.location.includes(location)
-// };
-     
-    
- 
+module.exports.validateBand = function(band){
+    return dropDownData.band.includes(band)
+};

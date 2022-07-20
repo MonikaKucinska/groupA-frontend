@@ -299,6 +299,6 @@ describe('UserValidator', function () {
         expect(function(){UserValidator.validateUserInput(user)}).to.throw(Error, "This location can not be chosen")
       })
 
-    
+
     })
 })
