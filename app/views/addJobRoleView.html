@@ -19,10 +19,10 @@
       <h1 class="govuk-heading-xl">Add a Job Role</h1>
 
       {% if success %}
-        <div id="regError" class="govuk-error-message reg-success">{{ success }}</div>   
-        {% endif%}  
-      
-      {% if errormessage %} 
+      <div id="regError" class="govuk-error-message reg-success">{{ success }}</div>   
+      {% endif%}
+
+        {% if errormessage %} 
              <div id="regError" class="govuk-error-message">{{ errormessage }}</div> 
         {% endif %}
 
@@ -47,37 +47,37 @@
                     Sharepoint URL
                 </label>
             </h1>
-            
             <input class="govuk-input" id="sharepoint_url" name="sharepoint_url" value="{{sharepoint_url}}" type="text" required> 
-</div>
+
       <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-                <label class="govuk-label govuk-label--l" for="cap_name">
+                <label class="govuk-label govuk-label--l" for="cap_id">
                     Choose Capability:
                 </label>
             </h1>
-            <select class="govuk-select" id="cap_name" name="cap_name">
-              {% for cap_name in capability %}
-                <option value="{{cap_name}}" selected>{{cap_name}}</option>
+            <select class="govuk-select" id="cap_id" name="cap_id">
+              {% for cap_id in capability %}
+                <option value="{{loop.index}}" selected>{{cap_id}}</option>
               {% endfor %}
             </select>
           </div>
 
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
-                <label class="govuk-label govuk-label--l" for="band_name">
+                <label class="govuk-label govuk-label--l" for="band_id">
                     Choose Band:
                 </label>
             </h1>
-            <select class="govuk-select" id="band_name" name="band_name">
-              {% for band_name in band %}
-                <option value="{{band_name}}" selected>{{band_name}}</option>
+            <select class="govuk-select" id="band_id" name="band_id">
+              {% for band_id in band %}
+                <option value="{{loop.index}}" selected>{{band_id}}</option>
               {% endfor %}
             </select>
           </div>
 
         <br>
         <button class="jobs-btn jobs-btn__green" id="submit">Submit</button>
+        </div>
       </form>
 
     </div>

@@ -31,6 +31,7 @@ module.exports.getJobRoles = async function () {
 
 module.exports.addJobRole = async function (role){ 
     try{
+        console.log(role)
         const response = await axios.post(URL, role)
         return response.data
     }catch(e){
