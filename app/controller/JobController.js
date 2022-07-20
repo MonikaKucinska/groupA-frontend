@@ -51,7 +51,6 @@ router.post('/user/register', async (req, res) => {
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hashedStr
             data = await UserService.postRegistration(user)
-
             let success = "Registration was successful" 
             res.locals.success = success 
 
@@ -72,8 +71,10 @@ router.post('/user/login', async (req, res) => {
 
             const user = JSON.parse(JSON.stringify(req.body))
             user.password = hashedStr
-            data = await UserService.postLogin(user) 
+
+            data = await UserService.postLogin(user)
             res.cookie("JWT", data)
+
             res.redirect('/index')
         }
     } catch (e) { 

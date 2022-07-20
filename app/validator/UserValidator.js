@@ -8,16 +8,16 @@ module.exports.validateLoginInput = function(user){
         throw new Error("Each field must be filled in")
     }
     if (user.email.length > 50) {
-        throw new Error("Email or Password is incorect")
+        throw new Error("Invalid Email or Password")
     }
     if(!this.validateUserEmail(user.email)){
-        throw new Error("Email or Password is incorect")
+        throw new Error("Invalid Email or Password")
     }
     if (user.password.length < 8 || user.password.length > 20) {
-        throw new Error("Email or Password is incorect")
+        throw new Error("Invalid Email or Password")
     }
     if (!this.validatePassword(user.password)) {
-        throw new Error("Email or Password is incorect")
+        throw new Error("Invalid Email or Password")
     }
     return true
 }

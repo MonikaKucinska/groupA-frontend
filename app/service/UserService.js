@@ -41,6 +41,20 @@ module.exports.postLogin = async function (user) {
         
         return response.data
     }catch(e){
-        throw new Error("Not handled error had occurred")
+        if(e.response === undefined){
+            throw new Error("Undefined error has occurred")
+        }
+        else if(e.response.status === 500){
+            throw new Error("An error occurred while executing this request")
+        }
+        else if(e.response.status === 404 || e.response.status === 400){
+            throw new Error("Bad request")
+        }
+        else if(e.response.status === 503){
+            throw new Error("Server is unavaliable")
+        }
+        else{
+            throw new Error("Not handled error had occurred")
+        }
     }
 }
