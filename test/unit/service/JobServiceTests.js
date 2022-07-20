@@ -102,7 +102,6 @@ describe('JobService', function () {
     })
  })
 
- //add job roles
  describe('addJobRole', function (){
   it('should return new job role id from response', async () => {
     var mock = new MockAdapter(axios);
@@ -179,7 +178,6 @@ describe('JobService', function () {
     }
   })
 })
-//end add job role
 
  describe('getCompByBand', function (){
   it('should return competencies from response', async () => {
