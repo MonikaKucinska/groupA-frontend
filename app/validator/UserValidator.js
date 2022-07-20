@@ -73,12 +73,13 @@ module.exports.validateUserEmail = function (email) {
 };
 
 module.exports.validatePassword = function(password){
-    var upperCaseChars = "(.*[A-Z].*)";
-    var lowerCaseChars = "(.*[a-z].*)";
-    var numbers = "(.*[0-9].*)";
-    var specialChars = "(.*[@,#,$,%,!,?].*$)";
+    var upperCaseChars = new RegExp("(.*[A-Z].*)");
+    var lowerCaseChars = new RegExp("(.*[a-z].*)");
+    var numbers =new RegExp("(.*[0-9].*)");
+    var specialChars =new RegExp("(.*[@,#,$,%,!,?].*$)");
+    var unAvaliableSpecialChar = new RegExp(/[`^&*()_+\-=\[\]{};':"\\|,.<>\/~]/)
 
-    return password.match(upperCaseChars) && password.match(lowerCaseChars) && password.match(numbers) && password.match(specialChars)
+    return upperCaseChars.test(password) && lowerCaseChars.test(password) && numbers.test(password) && specialChars.test(password) && !unAvaliableSpecialChar.test(password)
 };
 
 module.exports.valdateFirstName = function(firstName){
