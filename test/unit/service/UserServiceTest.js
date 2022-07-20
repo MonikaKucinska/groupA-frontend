@@ -129,6 +129,18 @@ describe('postLogin', function (){
     }
   })
 
+  it('should return error message when error 500 occurres when API returns ', async () => {
+    var mock = new MockAdapter(axios)
+    var data = "Incorrect email or password."
+    mock.onPost('/api/user/login').reply(500, data)
+
+    try{
+      var error = await UserService.postLogin(loginUser)
+    }catch(e){
+      expect(e.message).to.equal("Incorrect email or password.")
+    }
+  })
+
   it('should return error message when error 400 occurres', async () => {
     var mock = new MockAdapter(axios);
     mock.onPost('/api/user/login').reply(400);

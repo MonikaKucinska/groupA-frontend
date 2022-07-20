@@ -45,7 +45,11 @@ module.exports.postLogin = async function (user) {
             throw new Error("Undefined error has occurred")
         }
         else if(e.response.status === 500){
-            throw new Error("An error occurred while executing this request")
+            if(e.response.data === undefined){
+                throw new Error("An error occurred while executing this request")
+            }
+            console.log(e.response.data)
+            throw new Error(e.response.data)
         }
         else if(e.response.status === 404 || e.response.status === 400){
             throw new Error("Bad request")
