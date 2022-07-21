@@ -150,28 +150,28 @@ describe('Registration test', () => {
 
         expect(await driver.findElement(By.id('regError')).getText()).to.equal('Password must between 8 and 20 characters');
     })
+// Will be implemented in the login page user story
+    // it('should return a message when password has invalid characters', async() => {
+    //     var driver = await new webdriver.Builder()
+    //         .setChromeOptions(new chrome.Options().headless())
+    //         .withCapabilities(webdriver.Capabilities.chrome())
+    //         .build();
 
-    it('should return a message when password has invalid characters', async() => {
-        var driver = await new webdriver.Builder()
-            .setChromeOptions(new chrome.Options().headless())
-            .withCapabilities(webdriver.Capabilities.chrome())
-            .build();
+    //     driver.get('http://localhost:3000/registration')
 
-        driver.get('http://localhost:3000/registration')
+    //     await driver.findElement(By.id('email')).sendKeys('test@kainos.com');
+    //     await driver.findElement(By.id('password')).sendKeys('LetMeIn123!^&*<>\'\";');
+    //     await driver.findElement(By.id('first_name')).sendKeys('TestName');
+    //     await driver.findElement(By.id('last_name')).sendKeys('TestSurname');
+    //     await driver.findElement(By.id('phone_number')).sendKeys('123456789');
+    //     await driver.findElement(By.id('role')).click()
+    //     await driver.findElement(By.xpath('//*[@id="role"]/option[1]')).click();
+    //     await driver.findElement(By.id('location')).click();
+    //     await driver.findElement(By.xpath('//*[@id="location"]/option[1]')).click();
+    //     await driver.findElement(By.id('submit')).click();
 
-        await driver.findElement(By.id('email')).sendKeys('test@kainos.com');
-        await driver.findElement(By.id('password')).sendKeys('LetMeIn123!^&*<>\'\";');
-        await driver.findElement(By.id('first_name')).sendKeys('TestName');
-        await driver.findElement(By.id('last_name')).sendKeys('TestSurname');
-        await driver.findElement(By.id('phone_number')).sendKeys('123456789');
-        await driver.findElement(By.id('role')).click()
-        await driver.findElement(By.xpath('//*[@id="role"]/option[1]')).click();
-        await driver.findElement(By.id('location')).click();
-        await driver.findElement(By.xpath('//*[@id="location"]/option[1]')).click();
-        await driver.findElement(By.id('submit')).click();
-
-        expect(await driver.findElement(By.id('regError')).getText()).to.equal('Password must include at least one capital, small letter, number and special character');
-    })
+    //     expect(await driver.findElement(By.id('regError')).getText()).to.equal('Password must include at least one capital, small letter, number and special character');
+    // })
 
     it('should return a message when password has no special characters', async() => {
         var driver = await new webdriver.Builder()
