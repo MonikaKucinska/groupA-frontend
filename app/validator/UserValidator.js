@@ -3,6 +3,25 @@ const dropDownData = {
     location : ["Belfast", "Birmingham", "Gdansk", "London"]
 }
 
+module.exports.validateLoginInput = function(user){
+    if(Object.values(user).some(x => x === null || x === '')){
+        throw new Error("Each field must be filled in")
+    }
+    if (user.email.length > 50) {
+        throw new Error("Invalid Email or Password")
+    }
+    if(!this.validateUserEmail(user.email)){
+        throw new Error("Invalid Email or Password")
+    }
+    if (user.password.length < 8 || user.password.length > 20) {
+        throw new Error("Invalid Email or Password")
+    }
+    if (!this.validatePassword(user.password)) {
+        throw new Error("Invalid Email or Password")
+    }
+    return true
+}
+
 module.exports.validateUserInput = function (user) {
     if(Object.values(user).some(x => x === null || x === '')){
         throw new Error("Each field must be filled in")
@@ -54,12 +73,13 @@ module.exports.validateUserEmail = function (email) {
 };
 
 module.exports.validatePassword = function(password){
-    var upperCaseChars = "(.*[A-Z].*)";
-    var lowerCaseChars = "(.*[a-z].*)";
-    var numbers = "(.*[0-9].*)";
-    var specialChars = "(.*[@,#,$,%,!,?].*$)";
+    var upperCaseChars = new RegExp("(.*[A-Z].*)");
+    var lowerCaseChars = new RegExp("(.*[a-z].*)");
+    var numbers =new RegExp("(.*[0-9].*)");
+    var specialChars =new RegExp("(.*[@,#,$,%,!,?].*$)");
+    var unAvaliableSpecialChar = new RegExp(/[`^&*()_+\-=\[\]{};':"\\|,.<>\/~]/)
 
-    return password.match(upperCaseChars) && password.match(lowerCaseChars) && password.match(numbers) && password.match(specialChars)
+    return upperCaseChars.test(password) && lowerCaseChars.test(password) && numbers.test(password) && specialChars.test(password) && !unAvaliableSpecialChar.test(password)
 };
 
 module.exports.valdateFirstName = function(firstName){

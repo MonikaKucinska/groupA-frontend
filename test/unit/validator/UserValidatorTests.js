@@ -301,4 +301,88 @@ describe('UserValidator', function () {
 
 
     })
+    describe('validateLoginInput', function () {
+      it('should return true when user is valid', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "Password123!",
+        }
+
+        expect(UserValidator.validateLoginInput(user)).to.be.true
+      })
+
+      it('should return error when any field is empty', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Each field must be filled in")
+      })
+
+      it('should return error when email is longer than 50 char', () => {
+        let user = {
+            email: "patryk.kiszelewskikiszelewskikiszelewskikiszelewskikiszelewskikiszelewskikiszelewski@kainos.com",
+            password: "Password123!",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+      it('should return error when email email doesnt contain company domain', () => {
+        let user = {
+            email: "patryk.kiszelewski@gmail.com",
+            password: "Password123!",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+      it('should return error when password less than 8 char', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "Pa12!d",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+      it('should return error when password more than 20 char', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "Pa12!dPa12!dPa12!dPa12!d",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+      it('should return error when password doesnt contain capital letter', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "password123!",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+      it('should return error when password doesnt contain a number', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "Passworddd@!",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+
+      it('should return error when password doesnt contain a special char', () => {
+        let user = {
+            email: "patryk.kiszelewski@kainos.com",
+            password: "Password12345",
+        }
+
+        expect(function(){UserValidator.validateLoginInput(user)}).to.throw(Error, "Invalid Email or Password")
+      })
+
+    })
 })

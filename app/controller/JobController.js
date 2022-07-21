@@ -4,10 +4,13 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
-const AddJobRoleValidator = require ('../validator/AddJobRoleValidator.js'); 
-const bcrypt = require('bcryptjs')
 
-const saltRounds = 10;
+const cookieParser = require('cookie-parser');
+
+const AddJobRoleValidator = require ('../validator/AddJobRoleValidator.js'); 
+
+const crypto = require('crypto');
+require('dotenv').config({path: '.env'});
 
 //take request body and response body
 //await for data from api, 
@@ -45,17 +48,41 @@ router.get('/band-comp/:id', async (req, res) => {
 router.post('/user/register', async (req, res) => {
     try {
         if(userValidator.validateUserInput(req.body)){
-            const hash = bcrypt.hashSync(req.body.password, saltRounds);
+            const hashedStr = crypto.createHmac('sha256', process.env.SECRET_KEY)
+                        .update(req.body.password)
+                        .digest('hex');
             const user = JSON.parse(JSON.stringify(req.body))
-            user.password = hash
+            user.password = hashedStr
             data = await UserService.postRegistration(user)
             let success = "Registration was successful" 
             res.locals.success = success 
-            res.render('registation')
+
+            res.render('registration')
         }
     } catch (e) {
         res.locals.errormessage = e.message
         res.render('registration', req.body)
+    }
+});
+
+router.post('/user/login', async (req, res) => {
+    try {
+        if(userValidator.validateLoginInput(req.body)){
+            const hashedStr = crypto.createHmac('sha256', process.env.SECRET_KEY)
+                        .update(req.body.password)
+                        .digest('hex');
+
+            const user = JSON.parse(JSON.stringify(req.body))
+            user.password = hashedStr
+
+            data = await UserService.postLogin(user)
+            res.cookie("JWT", data)
+
+            res.redirect('/index')
+        }
+    } catch (e) { 
+        res.locals.errormessage = e.message
+        res.render('login', req.body)
     }
 });
 
