@@ -24,7 +24,7 @@ describe('Page band-comp should include competency and competency information', 
 
         //find band name link and click it
 
-        let bandName = await driver.findElement(By.id("compByBandID1")).getText().then(function (value) {
+       var bandName = await driver.findElement(By.id("compByBandID1")).getText().then(function (value) {
             return value
         })
 
@@ -34,15 +34,15 @@ describe('Page band-comp should include competency and competency information', 
         // find page description and assert it with expected result
 
         var bandComp = await driver.findElement(By.xpath("//*[@id=\"main-content\"]/table/caption")).getText().then(function (value) {
-            return value
+           return value
         });
 
         //assert with chai should
 
-        bandComp.should.equal(bandName + " band competencies");
+        bandComp.should.equal(bandName + " Band Competencies");
         await driver.quit();
 
-    }).timeout(4000)
+    }).timeout(5000)
 
     it('page band competencies should include competencies name and information', async () => {
 
