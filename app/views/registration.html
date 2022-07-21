@@ -1,11 +1,11 @@
-{% extends "layout_unbranded.html" %}
+{% extends "layout_custom.html" %}
 
 {% block pageTitle %}
   Registration
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/index">Back</a>
+  <a class="govuk-back-link" href="/index.html">Back</a>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
       <h1 class="govuk-heading-xl">Register</h1>
 
         {% if success %}
-          <div id="regError" class="govuk-error-message">{{ success }}</div> 
+        <div id="regError" class="govuk-error-message reg-success">{{ success }}</div>   
         {% endif%}
 
         {% if errormessage %} 
@@ -27,50 +27,48 @@
         {% endif %}
 
       <form class="form" action="/user/register" method="post">
-
-       
         <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="email">
                     Email
                 </label>
-            </h1>
+            </div>
                 <input class="govuk-input" id="email" name="email" value="{{email}}" type="text" required>
 
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="password">
                     Password
                 </label>
-            </h1>
+            </div>
                 <input class="govuk-input" id="password" name="password" value="{{password}}" type="password" required>
 
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="first_name">
                     Forename
                 </label>
-            </h1>
+            </div>
             <input class="govuk-input" id="first_name" name="first_name" value="{{first_name}}" type="text" required>
 
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="last_name">
                     Surname
                 </label>
-            </h1>
+            </div>
           <input class="govuk-input" id="last_name" name="last_name" value="{{last_name}}" type="text" required>
 
-          <h1 class="govuk-label-wrapper">
+          <div class="govuk-label-wrapper">
             <label class="govuk-label govuk-label--l" for="phone_number">
                 Phone Number
             </label>
-        </h1>
+        </div>
       <input class="govuk-input" id="phone_number" name="phone_number" value="{{phone_number}}" type="text" required>
 
       <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="role">
                     Choose role:
                 </label>
-            </h1>
+            </div>
             <select class="govuk-select" id="role" name="role">
               {% for role in roles %}
                 <option value="{{role}}" selected>{{role}}</option>
@@ -79,11 +77,11 @@
           </div>
 
           <div class="govuk-form-group">
-            <h1 class="govuk-label-wrapper">
+            <div class="govuk-label-wrapper">
                 <label class="govuk-label govuk-label--l" for="location">
                     Choose location:
                 </label>
-            </h1>
+            </div>
             <select class="govuk-select" id="location" name="location">
               {% for location in locations %}
                 <option value="{{location}}" selected>{{location}}</option>
@@ -92,7 +90,7 @@
           </div>
 
         <br>
-        <button class="govuk-button" id="submit">Submit</button>
+        <button class="jobs-btn jobs-btn__green" id="submit">Submit</button>
       </form>
 
     </div>
