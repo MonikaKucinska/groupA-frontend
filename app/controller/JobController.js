@@ -4,6 +4,7 @@ const router = express.Router()
 const JobService = require('../service/JobService.js')
 const UserService = require('../service/UserService.js')
 const userValidator = require('../validator/UserValidator.js');
+const AddJobRoleValidator = require ('../validator/AddJobRoleValidator.js'); 
 const bcrypt = require('bcryptjs')
 
 const saltRounds = 10;
@@ -71,4 +72,27 @@ router.get('/job-responsibility/:id', async (req, res) => {
     }
 });
 
+
+//take request body and response body
+//check if passed job role is valid, if not, throw exception, and render error message
+//if ok await for id form post user
+//redirect to /job-roles if not error
+//if error occurres, render error message
+router.post('/job-roles', async (req, res) => {
+    try {
+        if(AddJobRoleValidator.validateUserInput(req.body)){
+            const jobRole = req.body
+            data = await JobService.addJobRole(jobRole) 
+            let success = "New job role added"
+            res.locals.success = success
+            //res.redirect('/job-roles')
+            res.render('addJobRoleView')
+        }
+    } catch (e) {
+        res.locals.errormessage = e.message
+        res.render('addJobRoleView', req.body)
+    }
+});
+
 module.exports = router
+
