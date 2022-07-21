@@ -22,7 +22,7 @@ describe('Job Roles test', () => {
         await driver.findElement(By.id('view-job-roles')).click('#view-job-roles');
 
         //Job Roles
-        expect(await driver.findElement(By.className('govuk-table__header')).getText()).to.equal('Role');
+        expect(await driver.findElement(By.className('govuk-table__header')).getText()).to.equal('ROLE');
 
         await driver.quit();
     }).timeout(4000)
