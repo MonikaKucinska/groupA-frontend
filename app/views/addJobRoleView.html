@@ -1,0 +1,86 @@
+{% extends "layout_custom.html" %}
+
+{% block pageTitle %}
+  Add a Job Role
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/index.html">Back</a>
+{% endblock %}
+
+{% block content %}
+
+{% set band = ["Leaders", "Principal", "Manager", "Consultant", "Senior Associate", "Associate", "Trainee", "Apprentice"] %} 
+{% set capability = ["Engineering", "Platforms", "Data", "Artificial Intelligence", "Cyber Security", "Workday", "Experience Design", "Product", "Delivery", "Operations", "Business Development and Marketing", "Organisational Strategy and Planning", "People", "Commercial and Financial Management", "Business Services Support"] %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Add a Job Role</h1>
+
+      {% if success %}
+      <div id="regError" class="govuk-error-message reg-success">{{ success }}</div>   
+      {% endif%}
+
+        {% if errormessage %} 
+             <div id="regError" class="govuk-error-message">{{ errormessage }}</div> 
+        {% endif %}
+
+      <form class="form" action="/job-roles" method="post">
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="email">
+                    Role Name
+                </label>
+            </h1>
+                <input class="govuk-input" id="role_name" name="role_name" value="{{role_name}}" type="text" required>
+
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="role_description">
+                    Role Description
+                </label>
+            </h1>
+                <input class="govuk-input" id="role_description" name="role_description" value="{{role_description}}" type="text" required>
+
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="sharepoint_url">
+                    Sharepoint URL
+                </label>
+            </h1>
+            <input class="govuk-input" id="sharepoint_url" name="sharepoint_url" value="{{sharepoint_url}}" type="text" required> 
+
+      <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="cap_id">
+                    Choose Capability:
+                </label>
+            </h1>
+            <select class="govuk-select" id="cap_id" name="cap_id">
+              {% for cap_id in capability %}
+                <option value="{{loop.index}}" selected>{{cap_id}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="band_id">
+                    Choose Band:
+                </label>
+            </h1>
+            <select class="govuk-select" id="band_id" name="band_id">
+              {% for band_id in band %}
+                <option value="{{loop.index}}" selected>{{band_id}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+        <br>
+        <button class="jobs-btn jobs-btn__green" id="submit">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

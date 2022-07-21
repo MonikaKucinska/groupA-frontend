@@ -299,7 +299,7 @@ describe('UserValidator', function () {
         expect(function(){UserValidator.validateUserInput(user)}).to.throw(Error, "This location can not be chosen")
       })
 
-    
+
     })
     describe('validateLoginInput', function () {
       it('should return true when user is valid', () => {

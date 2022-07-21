@@ -29,6 +29,31 @@ module.exports.getJobRoles = async function () {
     }
 }
 
+module.exports.addJobRole = async function (role){ 
+    try{
+        const response = await axios.post(URL, role)
+        return response.data
+    }catch(e){
+        if(e.response === undefined){
+            throw new Error("Undefined error has occurred")
+        }
+        else if(e.response.status === 500){
+            if(e.response.data === undefined){
+                throw new Error("An error occurred while executing this request")
+            }
+        }
+        else if(e.response.status === 404 || e.response.status === 400){
+            throw new Error("Bad request")
+        }
+        else if(e.response.status === 503){
+            throw new Error("Server is unavaliable")
+        }
+        else{
+            throw new Error("Not handled error had occurred")
+        }
+    }
+}
+
 module.exports.getCompByBandID = async function (id) {
     if(isNaN(id)){
         throw new Error("Invalid ID")
