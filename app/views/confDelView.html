@@ -1,0 +1,30 @@
+{% extends "layout_custom.html" %} {% block pageTitle %} Job Roles {% endblock
+%} {% block beforeContent %}
+<a href="/job-roles" class="govuk-back-link">Back</a>
+{% endblock %} {% block content %}
+<div class="govuk-grid-row page-center">
+  <h1>You are about to delete a job role</h1>
+  <form action="/job-roles" id="deleteForm">
+    <button
+      type="submit"
+      class="jobs-btn delete-btn"
+      id="delete"
+      value="delete"
+    >
+      Delete
+    </button>
+  </form>
+</div>
+
+<script>
+  let form = document.getElementById("deleteForm");
+  form.addEventListener("submit", (event) => {
+    let submitter = event.submitter;
+    console.log(submitter);
+    let handler = submitter.id;
+    console.log(handler);
+    // data = await JobService.deleteJob(req.params.id);
+  });
+</script>
+
+{% endblock %}

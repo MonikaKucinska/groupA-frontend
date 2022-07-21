@@ -73,11 +73,21 @@ router.get("/job-responsibility/:id", async (req, res) => {
 
 router.get("/job-roles/:id", async (req, res) => {
   try {
-    data = await JobService.deleteJob(req.params.id);
+    res.render("confDelView");
+    // data = await JobService.deleteJob(req.params.id);
 
-    let success = "Deletion was successful";
-    res.locals.success = success;
-    res.render("jobRoleView");
+    // const form = document.getElementById("delete-form");
+    // form.onsubmit(await JobService.deleteJob(req.params.id));
+
+    //
+    // res.render("jobRoleView");
+
+    // res.render("confDelView", { role: data });
+    // data = await JobService.deleteJob(req.params.id);
+    // if (data === 200) {
+    //   res.render("jobRoleView");
+    // }
+
     // console.log(data);
     // res.render("jobRespView", { responsibilities: data });
   } catch (e) {

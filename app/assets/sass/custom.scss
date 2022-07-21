@@ -55,7 +55,6 @@ a:hover, a:focus, a:active {
   letter-spacing: normal;
   padding: 5px ;
   background-color: $white;
-  color: $primary-green;
   text-align: center;
   border: 2px solid $primary-green;
   display: block;
@@ -65,6 +64,16 @@ a:hover, a:focus, a:active {
   text-decoration: none;
   background-color: $primary-green;
   color: $white !important;
+}
+
+.job-roles-delete{
+  border-color: red;
+  color: red !important;
+}
+
+.job-roles-delete:hover, .job-roles-delete:active, .job-roles-delete:focus {
+  border-color: red;
+  background-color: red;
 }
 
 // styling buttons
@@ -91,6 +100,31 @@ a:hover, a:focus, a:active {
 
 .jobs-btn__green:hover {
   background-color: $primary-green;
+}
+
+.delete-btn {
+  border-color: red;
+  color: red;
+  margin-right: 1rem;
+}
+
+.delete-btn:hover {
+  background-color: red;
+  color: $white;
+}
+
+.cancel-btn {
+  border-color: $primary-grey;
+  color: $primary-grey;
+}
+
+.cancel-btn:hover {
+  background-color: $primary-grey;
+  color: $white;
+}
+
+.page-center {
+  text-align: center;
 }
 
 // styling header
