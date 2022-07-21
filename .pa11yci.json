@@ -1,0 +1,13 @@
+{
+    "defaults": {
+        "standard": "WCAG2AA",
+        "timeout": 15000
+    },
+    "urls": [
+        "http://localhost:3000/index",
+        "http://localhost:3000/job-roles",
+        "http://localhost:3000/registration",
+        "http://localhost:3000/band-comp/1",
+        "http://localhost:3000/job-responsibility/1"
+    ]
+}
