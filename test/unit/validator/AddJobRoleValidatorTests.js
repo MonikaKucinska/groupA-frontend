@@ -4,7 +4,7 @@ const AddJobRoleValidator = require('../../../app/validator/AddJobRoleValidator.
 
 describe('AddJobRoleValidator', function() {
     describe('validateUserInput', function () {
-        it('should return true when user is valid', () => {
+        it('should return true when role is valid', () => {
             let role = {
                 role_name: "Software Engineer",
                 role_description: "As a Trainee Software Engineer with Kainos, you will work on projects where you can make a real difference to people's lives ",
@@ -12,11 +12,10 @@ describe('AddJobRoleValidator', function() {
                 cap_id: 3,
                 band_id: 5
             }
-            console.log(role)
             expect(AddJobRoleValidator.validateUserInput(role)).to.be.true
         })
 
-        it('should return true when user is valid (Role description allows special char)', () => {
+        it('should return true when role is valid (Role description allows special char)', () => {
             let role = {
                 role_name: "Software Engineer",
                 role_description: "make a real difference to people's lives!",
@@ -24,7 +23,6 @@ describe('AddJobRoleValidator', function() {
                 cap_id: 3,
                 band_id: 5
             }
-            console.log(role)
             expect(AddJobRoleValidator.validateUserInput(role)).to.be.true
         })
 
@@ -58,7 +56,6 @@ describe('AddJobRoleValidator', function() {
                 cap_id: 3,
                 band_id: 5
             }
-            console.log(role)
             expect(function(){AddJobRoleValidator.validateUserInput(role)}).to.throw(Error, "URL too long")
         })
 
@@ -125,7 +122,7 @@ describe('AddJobRoleValidator', function() {
                 cap_id: 3,
                 band_id: 40
             }
-            console.log(role)
+            
             expect(function(){AddJobRoleValidator.validateUserInput(role)}).to.throw(Error, "Invalid Band")
         })
     })

@@ -1,8 +1,7 @@
 const dropDownData = {
-    band: ["Leaders", "Principal", "Manager", "Consultant", "Senior Associate", "Associate", "Trainee", "Apprentice"],
-    capability : ["Engineering", "Platforms", "Data", "Artificial Intelligence", "Cyber Security", "Workday", "Experience Design", "Product", "Delivery", "Operations", "Business Development and Marketing", "Organisational Strategy and Planning", "People", "Commercial and Financial Management", "Business Services Support"]
+    band: [1, 2, 3, 4, 5, 6, 7, 8],
+    capability : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
-
 
 module.exports.validateUserInput = function (role) {
     if(Object.values(role).some(x => x === null || x === '')){
@@ -26,10 +25,10 @@ module.exports.validateUserInput = function (role) {
     if(!this.validateSharepointURL(role.sharepoint_url)){ 
         throw new Error("Invalid URL")
     }
-    if(!this.validateCapability(role.capability)) {
+    if(!this.validateCapability(role.cap_id)) {
         throw new Error("Invalid Capability")
     }
-    if(!this.validateBand(role.band)) {
+    if(!this.validateBand(role.band_id)) {
         throw new Error("Invalid Band")
     }
 
