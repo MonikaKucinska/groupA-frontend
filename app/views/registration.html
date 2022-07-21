@@ -18,6 +18,10 @@
 
       <h1 class="govuk-heading-xl">Register</h1>
 
+        {% if success %}
+          <div id="regError" class="govuk-error-message">{{ success }}</div> 
+        {% endif%}
+
         {% if errormessage %} 
             <div id="regError" class="govuk-error-message">{{ errormessage }}</div> 
         {% endif %}
