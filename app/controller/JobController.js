@@ -73,8 +73,7 @@ router.post('/user/login', async (req, res) => {
             user.password = hashedStr
 
             data = await UserService.postLogin(user)
-            res.cookie("JWT", data.token)
-            res.cookie("Role", data.role)
+            res.cookie("JWT", data)
 
             res.redirect('/index')
         }
