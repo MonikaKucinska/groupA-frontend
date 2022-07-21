@@ -81,13 +81,12 @@ router.get('/job-responsibility/:id', async (req, res) => {
 router.post('/job-roles', async (req, res) => {
     try {
         if(AddJobRoleValidator.validateUserInput(req.body)){
-            const jobRole = JSON.parse(JSON.stringify(req.body))
+            const jobRole = req.body
             data = await JobService.addJobRole(jobRole) 
             let success = "New job role added"
             res.locals.success = success
             //res.redirect('/job-roles')
             res.render('addJobRoleView')
-            console.log("working")
         }
     } catch (e) {
         res.locals.errormessage = e.message
